@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laboratorio Polymarket</title>
+<meta name="description" content="Prueba prospectiva con dinero virtual: ¿anticipan los saltos de Polymarket el precio de los activos?">
+<style>
+:root{--bg:#f7f7f5;--card:#fff;--fg:#1d1d1b;--mut:#6b6b66;--line:#e4e3de;--acc:#3b5bdb;--pos:#2b8a3e;--neg:#c92a2a;--warn:#e8590c;--chip:#f1f0ec}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141413;--card:#1e1e1c;--fg:#ecebe6;--mut:#9a9a93;--line:#33332f;--acc:#7b93f0;--pos:#51cf66;--neg:#ff6b6b;--warn:#ff922b;--chip:#2a2a27}}
+:root[data-theme="dark"]{--bg:#141413;--card:#1e1e1c;--fg:#ecebe6;--mut:#9a9a93;--line:#33332f;--acc:#7b93f0;--pos:#51cf66;--neg:#ff6b6b;--warn:#ff922b;--chip:#2a2a27}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{border-bottom:1px solid var(--line);background:var(--card)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.top{display:flex;align-items:center;gap:12px;padding:14px 0 6px;flex-wrap:wrap}
+.top h1{font-size:18px;margin:0}
+.top .meta{margin-left:auto;color:var(--mut);font-size:12px}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 12px;color:var(--mut);font:inherit;cursor:pointer;white-space:nowrap}
+nav button.on{color:var(--fg);border-color:var(--acc);font-weight:600}
+main{padding:20px 0 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}
+h2{font-size:16px;margin:0 0 10px}
+h3{font-size:14px;margin:14px 0 6px}
+p{margin:6px 0}
+.mut{color:var(--mut);font-size:13px}
+.note{border-left:3px solid var(--warn);padding:8px 12px;background:var(--chip);border-radius:4px;font-size:13px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stats{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.stat{background:var(--chip);border-radius:8px;padding:10px}
+.stat b{display:block;font-size:20px}
+.stat span{font-size:12px;color:var(--mut)}
+.tbl{width:100%;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mut);font-weight:500}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pos{color:var(--pos)}.neg{color:var(--neg)}
+.chip{display:inline-block;padding:1px 8px;border-radius:99px;background:var(--chip);font-size:12px;white-space:nowrap}
+.chip.ok{background:color-mix(in srgb,var(--pos) 20%,transparent)}
+.chip.bad{background:color-mix(in srgb,var(--neg) 18%,transparent)}
+.cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.cats button{border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:99px;padding:4px 12px;font:inherit;font-size:13px;cursor:pointer}
+.cats button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+a{color:var(--acc)}
+svg.sp{vertical-align:middle}
+details summary{cursor:pointer;color:var(--acc);font-size:13px}
+.hidden{display:none}
+ul{margin:6px 0;padding-left:20px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top"><h1>Laboratorio de inversión simulada · Polymarket</h1><span class="meta" id="upd">cargando…</span></div>
+  <nav id="tabs">
+    <button data-t="pm" class="on">Polymarket hoy</button>
+    <button data-t="live">Prueba en vivo</button>
+    <button data-t="know">Conocimiento</button>
+  </nav>
+</div></header>
+<main class="wrap">
+
+<section id="pm">
+  <div class="card">
+    <h2>Probabilidades actuales</h2>
+    <p class="mut">Mercados abiertos con más de $100.000 negociados. «Sí» = precio del contrato del sí (≈ probabilidad que asigna el mercado). Cambios en puntos porcentuales.</p>
+    <div class="cats" id="cats"></div>
+    <div class="tbl"><table id="pmt"></table></div>
+  </div>
+</section>
+
+<section id="live" class="hidden">
+  <div class="card">
+    <h2>¿Anticipan los saltos de Polymarket el precio de los activos?</h2>
+    <p>Cinco hipótesis registradas el 2026-11-04 con reglas congeladas. En el historial no había suficientes datos para probarlas (Polymarket apenas tenía liquidez antes de 2025), así que se prueban <b>hacia adelante</b>: cada vez que la probabilidad de una categoría salta ≥ 10 puntos en la dirección de la hipótesis, se anota una compra virtual del activo en la apertura de la sesión siguiente y se cierra a las 5 sesiones. Resultado = activo − SPY − costos supuestos.</p>
+    <p class="note">Dinero virtual. Hacen falta decenas de señales resueltas antes de concluir algo; con pocas, cualquier resultado puede ser azar.</p>
+  </div>
+  <div class="card"><h2>Resumen por hipótesis</h2><div class="tbl"><table id="hyps"></table></div></div>
+  <div class="card"><h2>Señales anotadas</h2><div class="tbl"><table id="sigs"></table></div></div>
+  <div class="grid">
+    <div class="card"><h2>Saltos recientes (30 días)</h2><div id="jumps"></div></div>
+    <div class="card">
+      <h2>Calibración desde el despliegue</h2>
+      <p class="mut">Mercados resueltos después del 2026-11-05: probabilidad 7 días antes del cierre frente al resultado. Brier: 0 = perfecto; «sin información» = predecir siempre la frecuencia media.</p>
+      <div class="tbl"><table id="cal"></table></div>
+    </div>
+  </div>
+  <div class="card"><h2>Referencia: ETF desde el inicio</h2><div class="stats" id="ref"></div><p class="mut" id="src"></p></div>
+  <div class="card hidden" id="errcard"><h2>Errores de las fuentes en la última ejecución</h2><p class="mut">No se inventan datos: si una fuente falla, se muestra aquí y lo que depende de ella queda pendiente.</p><ul id="errs"></ul></div>
+</section>
+
+<section id="know" class="hidden">
+  <div class="card">
+    <h2>Qué se buscaba</h2>
+    <p>Responder con dinero virtual si combinar análisis cuantitativo, macroeconomía (FRED), Polymarket e IA supera a comprar y mantener el S&amp;P 500 (SPY), después de riesgo y costos.</p>
+    <div class="stats" style="margin-top:12px">
+      <div class="stat"><b>24</b><span>hipótesis registradas antes de mirar resultados</span></div>
+      <div class="stat"><b>1</b><span>aprobada (es un veto, no una compra)</span></div>
+      <div class="stat"><b>0</b><span>estrategias que superan a SPY al mismo riesgo</span></div>
+      <div class="stat"><b>5</b><span>en prueba prospectiva (Polymarket, esta web)</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Conclusiones</h2>
+    <ul>
+      <li><b>Ninguna estrategia de compra superó la validación.</b> Con datos públicos y gratuitos no apareció ninguna forma de ganar al S&amp;P 500 ajustando por riesgo.</li>
+      <li><b>Más riesgo da más rentabilidad, pero en proporción.</b> SSO (S&amp;P 500 al doble) con filtro de tendencia rindió 15,3 %/año frente a 13,3 % de SPY, pero −4,2 %/año frente a SPY al mismo riesgo.</li>
+      <li><b>Lo único confirmado ayuda a evitar, no a ganar:</b> las empresas que aumentan sus acciones ≥ 10 % en un año rindieron ~7,5 %/año menos que el mercado en la prueba sellada 2020-2026 (p 0,020; no supera la corrección más estricta por 24 pruebas).</li>
+      <li><b>Polymarket predice muy bien los acontecimientos</b> (Brier mucho mejor que la referencia en las 10 categorías), pero eso no implica que anticipe los precios. Se mide aquí, hacia adelante.</li>
+      <li><b>La IA</b> (llama3 local y Gemini 2.5 Flash) leyendo documentos de la SEC no añadió nada medible.</li>
+      <li><b>Con $50, la mejor decisión fue siempre SPY</b>, o efectivo para las carteras activas cuando no hay ventaja.</li>
+    </ul>
+    <p class="mut">Resultado de investigación con datos históricos, no asesoría financiera.</p>
+  </div>
+
+  <div class="card">
+    <h2>Cómo se validó</h2>
+    <ul>
+      <li><b>Sin información futura:</b> cada variable en la fecha t usa solo datos publicados al cierre de t; las órdenes simuladas se ejecutan en la apertura de t+1. Macro por fecha de publicación (ALFRED), fundamentales por fecha de presentación (XBRL), eventos por hora de aceptación en EDGAR.</li>
+      <li><b>Registro previo:</b> reglas, diseño y código congelados con hash ANTES de evaluar.</li>
+      <li><b>Desarrollo 2011-2019</b> (se puede mirar) y <b>prueba sellada 2020-hoy</b>, que se usa una sola vez y solo si pasó el desarrollo.</li>
+      <li><b>Exigencia:</b> exceso ajustado por beta, neto de costos, t de Newey-West ≥ 2, costos ×2, corrección por pruebas múltiples (Benjamini-Hochberg).</li>
+      <li><b>Prueba prospectiva</b> con reglas congeladas para lo que no tenía historial (esta web).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Las tres fases</h2>
+    <div class="tbl"><table>
+      <tr><th></th><th>Fase 1</th><th>Fase 2</th><th>Fase 3</th></tr>
+      <tr><td>Activos</td><td>26</td><td>1.746 (índices punto en el tiempo)</td><td>+ 997.209 eventos SEC, 203 FDA, 1.173 mercados Polymarket</td></tr>
+      <tr><td>Ideas evaluadas</td><td>2 modelos (técnico y técnico+macro+Polymarket)</td><td>45 combinaciones de reglas + PEAD</td><td>24 hipótesis registradas antes</td></tr>
+      <tr><td>Método</td><td>walk-forward, calibración</td><td>dentro/fuera de muestra, BH, costos ×2/×3</td><td>+ registro previo, prueba sellada, ajuste por beta, prospectiva</td></tr>
+      <tr><td>Superan a SPY</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>Hallazgos que se mantienen</td><td>—</td><td>Polymarket predice bien la Fed</td><td>evitar dilución ≥ 10 %; Polymarket calibrado en 10 categorías</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h2>Las 24 hipótesis</h2>
+    <div class="cats" id="hfilter"></div>
+    <div class="tbl"><table id="htab"></table></div>
+  </div>
+
+  <div class="card">
+    <h2>Calidad histórica de Polymarket por categoría</h2>
+    <p class="mut">Mercados resueltos hasta 2026-11-04. Probabilidad 7 días antes del cierre.</p>
+    <div class="tbl"><table id="hq"></table></div>
+  </div>
+
+  <div class="card">
+    <h2>Qué quedó fuera de esta web</h2>
+    <p>El sistema completo (carteras A-G, motores de eventos SEC/FDA, laboratorio de estrategias, panel con usuario) sigue en el repositorio privado y se puede ejecutar en local con Docker. Aquí solo corre lo que todavía necesita evidencia nueva: Polymarket.</p>
+  </div>
+</section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const CAT={recesion:"Recesión",inflacion:"Inflación",politica_monetaria:"Política monetaria",aranceles:"Aranceles",elecciones:"Elecciones",geopolitica:"Geopolítica",regulacion:"Regulación",fiscal:"Fiscal",empresas:"Empresas",energia:"Energía"};
+const ENG={eventos:"Eventos SEC/FDA",descubrimiento:"Fundamentales",polymarket:"Polymarket",senal_pendiente:"Señal pendiente",ia:"IA",solida:"Riesgo y mezclas"};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pct=(x,d=1)=>x==null?"—":(x*100).toLocaleString("es",{minimumFractionDigits:d,maximumFractionDigits:d})+" %";
+const spct=(x,d=2)=>x==null?"—":`<span class="${x>0?"pos":x<0?"neg":""}">${x>0?"+":""}${pct(x,d)}</span>`;
+const pp=x=>x==null?"—":`<span class="${x>0?"pos":x<0?"neg":""}">${x>0?"+":""}${(x*100).toFixed(1)}</span>`;
+const num=(x,d=3)=>x==null?"—":x.toLocaleString("es",{minimumFractionDigits:d,maximumFractionDigits:d});
+const usd=x=>"$"+Math.round(x).toLocaleString("es");
+const get=f=>fetch("data/"+f+"?v="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+function spark(a){if(!a||a.length<2)return"";const w=80,h=22,mn=Math.min(...a),mx=Math.max(...a),r=mx-mn||1;
+  const pts=a.map((v,i)=>`${(i/(a.length-1)*w).toFixed(1)},${(h-2-(v-mn)/r*(h-4)).toFixed(1)}`).join(" ");
+  return `<svg class="sp" width="${w}" height="${h}"><polyline fill="none" stroke="var(--acc)" stroke-width="1.5" points="${pts}"/></svg>`}
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("#tabs button").forEach(x=>x.classList.toggle("on",x===b));
+  ["pm","live","know"].forEach(t=>$("#"+t).classList.toggle("hidden",t!==b.dataset.t));
+  history.replaceState(null,"","#"+b.dataset.t)});
+const h0=location.hash.slice(1);if(["pm","live","know"].includes(h0))document.querySelector(`#tabs button[data-t=${h0}]`).click();
+
+get("polymarket.json").then(d=>{
+  if(!d){$("#pmt").innerHTML="<tr><td>Aún no hay datos (el recolector se ejecuta una vez al día).</td></tr>";return}
+  $("#upd").textContent="Actualizado "+new Date(d.updated).toLocaleString("es");
+  const cats=Object.keys(CAT).filter(c=>d.categories[c]);let cur=cats[0];
+  const draw=()=>{$("#cats").innerHTML=cats.map(c=>`<button class="${c===cur?"on":""}" data-c="${c}">${CAT[c]} (${d.categories[c].length})</button>`).join("");
+    $("#cats").querySelectorAll("button").forEach(b=>b.onclick=()=>{cur=b.dataset.c;draw()});
+    $("#pmt").innerHTML=`<tr><th>Pregunta</th><th class="n">Sí</th><th class="n">1 día</th><th class="n">7 días</th><th>30 días</th><th class="n">Volumen</th><th>Cierre</th></tr>`+
+      d.categories[cur].map(m=>`<tr><td><a href="https://polymarket.com/event/${esc(m.slug)}" target="_blank" rel="noopener">${esc(m.question)}</a></td><td class="n">${pct(m.yes,0)}</td><td class="n">${pp(m.ch1)}</td><td class="n">${pp(m.ch7)}</td><td>${spark(m.spark)}</td><td class="n">${usd(m.volume)}</td><td class="mut">${esc((m.end_date||"").slice(0,10))}</td></tr>`).join("")};
+  draw()});
+
+Promise.all([get("senales.json"),get("calibracion.json"),get("status.json")]).then(([s,c,st])=>{
+  if(s){
+    $("#hyps").innerHTML=`<tr><th>Hipótesis</th><th>Activo</th><th class="n">Señales</th><th class="n">Resueltas</th><th class="n">Exceso medio neto</th><th class="n">Aciertos</th></tr>`+
+      s.hypotheses.map(h=>{const r=s.summary[h.code]||{};return `<tr><td><b>${esc(h.code)}</b><div class="mut">${esc(h.text)}</div></td><td>${h.asset}</td><td class="n">${r.signals||0}</td><td class="n">${r.resolved||0}</td><td class="n">${spct(r.mean_excess)}</td><td class="n">${r.hit_rate==null?"—":pct(r.hit_rate,0)}</td></tr>`}).join("");
+    const sg=[...s.signals].reverse();
+    $("#sigs").innerHTML=sg.length?`<tr><th>Detectada</th><th>Hipótesis</th><th>Activo</th><th class="n">Salto</th><th>Entrada → salida</th><th class="n">Activo</th><th class="n">SPY</th><th class="n">Neto vs SPY</th></tr>`+
+      sg.map(x=>{const o=x.outcome;return `<tr><td>${x.known||x.asof}</td><td>${esc(x.code)}<details><summary>mercados</summary><ul>${(x.questions||[]).map(q=>`<li>${esc(q)}</li>`).join("")}</ul></details></td><td>${x.asset}</td><td class="n">${pp(x.jump)}</td><td>${o?o.entry+" → "+o.exit:'<span class="chip">pendiente</span>'}</td><td class="n">${o?spct(o.ret):"—"}</td><td class="n">${o?spct(o.spy):"—"}</td><td class="n">${o?spct(o.excess_net):"—"}</td></tr>`}).join("")
+      :"<tr><td class='mut'>Todavía no hay señales: hace falta un salto ≥ 10 puntos en la dirección de alguna hipótesis.</td></tr>";
+    const j=Object.entries(s.recent_jumps||{}).flatMap(([k,v])=>v.map(x=>({k,...x})));
+    $("#jumps").innerHTML=j.length?`<div class="tbl"><table><tr><th>Fecha</th><th>Hipótesis</th><th class="n">Salto</th><th class="n">Mercados</th></tr>`+
+      j.sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<tr><td>${x.date}</td><td>${esc(x.k)}</td><td class="n">${pp(x.jump)}</td><td class="n">${x.n_markets}</td></tr>`).join("")+"</table></div>"
+      :"<p class='mut'>Sin saltos ≥ 10 puntos en los últimos 30 días.</p>";
+  }
+  if(c){const rows=Object.entries(c.summary||{});
+    $("#cal").innerHTML=rows.length?`<tr><th>Categoría</th><th class="n">Resueltos</th><th class="n">Brier</th><th class="n">Sin información</th></tr>`+rows.map(([k,v])=>`<tr><td>${CAT[k]||k}</td><td class="n">${v.n}</td><td class="n">${num(v.brier)}</td><td class="n">${num(v.brier_base)}</td></tr>`).join("")
+      :"<tr><td class='mut'>Aún no se ha resuelto ningún mercado desde el despliegue.</td></tr>"}
+  if(st){
+    $("#ref").innerHTML=Object.entries(st.assets||{}).map(([a,v])=>`<div class="stat"><b>${spct(v.since_start)}</b><span>${a} desde 2026-11-05 (cierre ${v.date})</span></div>`).join("")||"<p class='mut'>Sin precios todavía.</p>";
+    $("#src").textContent=`Fuente de precios: ${st.price_source}. Mercados seguidos: ${st.markets} (${st.with_history} con historial).`;
+    if(st.n_errors){$("#errcard").classList.remove("hidden");$("#errs").innerHTML=st.errors.map(e=>`<li class="mut">${esc(e)}</li>`).join("")+(st.n_errors>st.errors.length?`<li class="mut">… y ${st.n_errors-st.errors.length} más</li>`:"")}
+  }});
+
+get("hipotesis.json").then(d=>{if(!d)return;
+  const H=d.hypotheses;const engs=["todas",...new Set(H.map(h=>h.engine))];let cur="todas";
+  const st=h=>h.status==="aprobada"?'<span class="chip ok">aprobada</span>':h.status==="desarrollo_fallida"?'<span class="chip bad">rechazada en desarrollo</span>':`<span class="chip">${esc(h.status)}</span>`;
+  const draw=()=>{$("#hfilter").innerHTML=engs.map(e=>`<button class="${e===cur?"on":""}" data-e="${e}">${e==="todas"?"Todas":ENG[e]||e}</button>`).join("");
+    $("#hfilter").querySelectorAll("button").forEach(b=>b.onclick=()=>{cur=b.dataset.e;draw()});
+    $("#htab").innerHTML=`<tr><th>Código</th><th>Idea</th><th>Estado</th><th>Veredicto</th></tr>`+H.filter(h=>cur==="todas"||h.engine===cur).map(h=>`<tr><td><b>${esc(h.code)}</b><div class="mut">${ENG[h.engine]||esc(h.engine)}</div></td><td>${esc(h.title)}</td><td>${st(h)}</td><td class="mut">${esc(h.verdict)}</td></tr>`).join("")};
+  draw();
+  const q=d.polymarket_quality_historica||{};
+  $("#hq").innerHTML=`<tr><th>Categoría</th><th class="n">Resueltos</th><th class="n">Brier</th><th class="n">Sin información</th></tr>`+Object.entries(q).map(([k,v])=>`<tr><td>${CAT[k]||k}</td><td class="n">${v.n}</td><td class="n">${num(v.brier)}</td><td class="n">${num(v.brier_base)}</td></tr>`).join("")});
+</script>
+</body>
+</html>

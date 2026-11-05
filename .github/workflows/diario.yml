@@ -1,0 +1,40 @@
+name: Recolección diaria
+
+on:
+  schedule:
+    - cron: "30 22 * * 1-5"   # 22:30 UTC, tras el cierre de Nueva York (lunes a viernes)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: diario
+  cancel-in-progress: false
+
+jobs:
+  recolectar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r collector/requirements.txt
+      - run: python collector/run.py site/data
+      - name: Guardar datos en el repositorio
+        run: |
+          git config user.name "recolector"
+          git config user.email "recolector@users.noreply.github.com"
+          git add site/data
+          git diff --cached --quiet || git commit -m "Datos $(date -u +%F)"
+          git push
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

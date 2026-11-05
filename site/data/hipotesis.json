@@ -1,0 +1,340 @@
+{
+ "hypotheses": [
+  {
+   "code": "F3-01_regresion60_medianas_pequenas",
+   "engine": "senal_pendiente",
+   "title": "Regresión a 60 sesiones aplicada a medianas y pequeñas",
+   "hypothesis": "El decil superior de la regresión (entrenada con grandes) obtiene exceso ajustado por beta positivo en un universo independiente.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-04",
+   "rules_hash": "974b5422e3002f96",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-AI1_tono_8k_801",
+   "engine": "ia",
+   "title": "Tono de 8-K 8.01 clasificado por IA local",
+   "hypothesis": "Los 8-K 8.01 de tono positivo y materiales (según la IA) superan al mercado más que el conjunto de 8.01.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: solo 6 eventos",
+   "registered_at": "2026-11-04",
+   "rules_hash": "740417f567f7f91c",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-AI2_tono_8k_801_gemini",
+   "engine": "ia",
+   "title": "Tono de 8-K 8.01 clasificado por Gemini",
+   "hypothesis": "Con un modelo mayor (Gemini), los 8-K 8.01 positivos y materiales superan al mercado más que el conjunto de 8.01.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-05",
+   "rules_hash": "2d57f93fbdd604aa",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-D1_dilucion_evitar",
+   "engine": "descubrimiento",
+   "title": "Empresas que aumentan sus acciones en circulación ≥ 10 % interanual quedan por debajo del mercado.",
+   "hypothesis": "Empresas que aumentan sus acciones en circulación ≥ 10 % interanual quedan por debajo del mercado.",
+   "status": "aprobada",
+   "verdict": "APROBADA: exceso beta_neutral@1.0 en prueba sellada +7.5%/año, p ajustado 0.020, costos×2 > 0",
+   "registered_at": "2026-11-04",
+   "rules_hash": "dcfd8b4dc4ce99c6",
+   "test_evaluated": true
+  },
+  {
+   "code": "F3-D2_calidad_crecimiento",
+   "engine": "descubrimiento",
+   "title": "Crecimiento de ingresos ≥ 15 %, margen operativo y FCF positivos, deuda/activos < 0,5 y momentum en el 30 % superior superan al mercado.",
+   "hypothesis": "Crecimiento de ingresos ≥ 15 %, margen operativo y FCF positivos, deuda/activos < 0,5 y momentum en el 30 % superior superan al mercado.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-04",
+   "rules_hash": "930dc8577ecfd1ed",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-D3_valor_calidad",
+   "engine": "descubrimiento",
+   "title": "Rentabilidad por beneficios en el 20 % superior con FCF positivo y ventas crecientes supera al mercado.",
+   "hypothesis": "Rentabilidad por beneficios en el 20 % superior con FCF positivo y ventas crecientes supera al mercado.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-04",
+   "rules_hash": "804d2d763668d5c9",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-D4_extraordinario_asimetrico",
+   "engine": "descubrimiento",
+   "title": "Crecimiento extraordinario en medianas/pequeñas (asimétrica, 120 sesiones)",
+   "hypothesis": "Las empresas medianas/pequeñas con ventas +30 %, momentum en el 10 % superior y sin dilución tienen valor esperado positivo a 120 sesiones con pérdidas extremas acotadas.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: media 0.0123210070338747, cota inferior -0.0012248756970502724, n 603",
+   "registered_at": "2026-11-04",
+   "rules_hash": "c3e8cecca511450b",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-E1_contrato_material",
+   "engine": "eventos",
+   "title": "Tras un 8-K de contrato material (apartado 1.01) la acción supera al mercado (ajustado por beta).",
+   "hypothesis": "Tras un 8-K de contrato material (apartado 1.01) la acción supera al mercado (ajustado por beta).",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-04",
+   "rules_hash": "73ed44cc685b31d9",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-E2_activista_13D",
+   "engine": "eventos",
+   "title": "Tras un SC 13D (inversor activista ≥ 5 %) la acción supera al mercado.",
+   "hypothesis": "Tras un SC 13D (inversor activista ≥ 5 %) la acción supera al mercado.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-04",
+   "rules_hash": "ddb7be477c3b90e0",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-E3_oferta_compra",
+   "engine": "eventos",
+   "title": "Tras una oferta pública de compra (SC TO-T) sobre la empresa queda prima aprovechable.",
+   "hypothesis": "Tras una oferta pública de compra (SC TO-T) sobre la empresa queda prima aprovechable.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-04",
+   "rules_hash": "c23f9319bf7dd448",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-E4_reexpresion_evitar",
+   "engine": "eventos",
+   "title": "Tras un 8-K 4.02 (los estados financieros previos no son fiables) la acción queda por debajo.",
+   "hypothesis": "Tras un 8-K 4.02 (los estados financieros previos no son fiables) la acción queda por debajo.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: solo 43 eventos (mínimo 100)",
+   "registered_at": "2026-11-04",
+   "rules_hash": "0e5ffb0f41b6bf1e",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-E5_exclusion_evitar",
+   "engine": "eventos",
+   "title": "Tras un aviso de exclusión bursátil (8-K 3.01) la acción queda por debajo.",
+   "hypothesis": "Tras un aviso de exclusión bursátil (8-K 3.01) la acción queda por debajo.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-04",
+   "rules_hash": "82f28028bebb2646",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-E6_cambio_directivos",
+   "engine": "eventos",
+   "title": "Tras un cambio de directivos (8-K 5.02) la acción supera al mercado.",
+   "hypothesis": "Tras un cambio de directivos (8-K 5.02) la acción supera al mercado.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-04",
+   "rules_hash": "2b4d4c5583579f6b",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-E7_fda_aprobacion",
+   "engine": "eventos",
+   "title": "Tras una aprobación ORIGINAL de la FDA de un fármaco, la empresa supera al mercado.",
+   "hypothesis": "Tras una aprobación ORIGINAL de la FDA de un fármaco, la empresa supera al mercado.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: solo 79 eventos (mínimo 100)",
+   "registered_at": "2026-11-04",
+   "rules_hash": "9d4222f3a2ec66f7",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-E8_compras_directivos",
+   "engine": "eventos",
+   "title": "Tras una compra en mercado abierto de un consejero o directivo por ≥ $25.000, la acción supera al mercado (ajustado por beta) a 60 sesiones.",
+   "hypothesis": "Tras una compra en mercado abierto de un consejero o directivo por ≥ $25.000, la acción supera al mercado (ajustado por beta) a 60 sesiones.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-05",
+   "rules_hash": "93473098f7025e03",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-E9_compras_agrupadas",
+   "engine": "eventos",
+   "title": "Cuando al menos 2 consejeros o directivos distintos compran en mercado abierto en 30 días, la acción supera al mercado a 60 sesiones.",
+   "hypothesis": "Cuando al menos 2 consejeros o directivos distintos compran en mercado abierto en 30 días, la acción supera al mercado a 60 sesiones.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: no se gastó la prueba sellada",
+   "registered_at": "2026-11-05",
+   "rules_hash": "f6f4e12e46b43dfb",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-PM1_recesion_TLT",
+   "engine": "polymarket",
+   "title": "Si sube la probabilidad de recesión, los bonos largos (TLT) superan a SPY en las sesiones siguientes.",
+   "hypothesis": "Si sube la probabilidad de recesión, los bonos largos (TLT) superan a SPY en las sesiones siguientes.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: 1 días con salto (mínimo 20), exceso medio a 5 sesiones nan",
+   "registered_at": "2026-11-04",
+   "rules_hash": "3a8824be846085ab",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-PM2_recortes_TLT",
+   "engine": "polymarket",
+   "title": "Si sube la probabilidad de recortes de la Fed, TLT supera a SPY.",
+   "hypothesis": "Si sube la probabilidad de recortes de la Fed, TLT supera a SPY.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: 27 días con salto (mínimo 20), exceso medio a 5 sesiones nan",
+   "registered_at": "2026-11-04",
+   "rules_hash": "79b2f1cfd4cea290",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-PM3_aranceles_GLD",
+   "engine": "polymarket",
+   "title": "Si sube la probabilidad de nuevos aranceles, el oro (GLD) supera a SPY.",
+   "hypothesis": "Si sube la probabilidad de nuevos aranceles, el oro (GLD) supera a SPY.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: 3 días con salto (mínimo 20), exceso medio a 5 sesiones nan",
+   "registered_at": "2026-11-04",
+   "rules_hash": "527ea16cc909fe8e",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-PM4_escalada_GLD",
+   "engine": "polymarket",
+   "title": "Si sube la probabilidad de escalada militar, GLD supera a SPY.",
+   "hypothesis": "Si sube la probabilidad de escalada militar, GLD supera a SPY.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: 12 días con salto (mínimo 20), exceso medio a 5 sesiones nan",
+   "registered_at": "2026-11-04",
+   "rules_hash": "d9e67c814d297191",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-PM5_escalada_USO",
+   "engine": "polymarket",
+   "title": "Si sube la probabilidad de escalada militar, el petróleo (USO) supera a SPY.",
+   "hypothesis": "Si sube la probabilidad de escalada militar, el petróleo (USO) supera a SPY.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: 12 días con salto (mínimo 20), exceso medio a 5 sesiones nan",
+   "registered_at": "2026-11-04",
+   "rules_hash": "614789600db6f6cb",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-R1_apalancamiento_tendencia",
+   "engine": "solida",
+   "title": "SSO (2×) con tendencia de SPY; si no, IEF",
+   "hypothesis": "Tener SSO cuando SPY está sobre su media de 200 sesiones (IEF si no) supera a SPY con el MISMO riesgo.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA: frente a SPY con el mismo riesgo -4.2%/año en desarrollo (p 0.8355)",
+   "registered_at": "2026-11-05",
+   "rules_hash": "3d77e7e2013f78dd",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-R2_indice_sin_dilutivas",
+   "engine": "solida",
+   "title": "S&P 500 ponderado por capitalización sin empresas dilutivas",
+   "hypothesis": "Quitar del S&P 500 ponderado por capitalización a las empresas con acciones +10 % interanual mejora el retorno.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: +3,5 %/año (t 0,95); construcción poco fiable (la versión completa rinde 7,1 % frente a 11,7 % de SPY)",
+   "registered_at": "2026-11-05",
+   "rules_hash": "cb6cbfd0dd5c8edd",
+   "test_evaluated": false
+  },
+  {
+   "code": "F3-R3_interes_corto_evitar",
+   "engine": "solida",
+   "title": "Interés en corto ≥ 10 % de las acciones: evitar",
+   "hypothesis": "Las acciones con interés en corto ≥ 10 % de sus acciones en circulación quedan por debajo del mercado a 60 sesiones.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: solo 48 fechas de liquidación en 2018-2019 (insuficiente para el error estadístico a 60 sesiones)",
+   "registered_at": "2026-11-05",
+   "rules_hash": "3e643fa856a2e6d0",
+   "test_evaluated": false
+  }
+ ],
+ "polymarket_quality_historica": {
+  "recesion": {
+   "n": 48,
+   "brier": 0.12697814583333333,
+   "brier_base": 0.21484375,
+   "mean_p": 0.348875,
+   "freq_yes": 0.3125
+  },
+  "inflacion": {
+   "n": 96,
+   "brier": 0.09691080729166666,
+   "brier_base": 0.1875,
+   "mean_p": 0.21746875,
+   "freq_yes": 0.25
+  },
+  "politica_monetaria": {
+   "n": 131,
+   "brier": 0.01882374618320611,
+   "brier_base": 0.16362682827341066,
+   "mean_p": 0.20089694656488552,
+   "freq_yes": 0.20610687022900764
+  },
+  "aranceles": {
+   "n": 133,
+   "brier": 0.0805323834586466,
+   "brier_base": 0.21606648199445982,
+   "mean_p": 0.2723007518796992,
+   "freq_yes": 0.3157894736842105
+  },
+  "elecciones": {
+   "n": 81,
+   "brier": 0.04273657407407407,
+   "brier_base": 0.14296601127876846,
+   "mean_p": 0.18251851851851852,
+   "freq_yes": 0.1728395061728395
+  },
+  "geopolitica": {
+   "n": 99,
+   "brier": 0.12042888131313133,
+   "brier_base": 0.22548719518416482,
+   "mean_p": 0.24522727272727277,
+   "freq_yes": 0.3434343434343434
+  },
+  "regulacion": {
+   "n": 35,
+   "brier": 0.11484553571428573,
+   "brier_base": 0.24000000000000002,
+   "mean_p": 0.35421428571428576,
+   "freq_yes": 0.4
+  },
+  "fiscal": {
+   "n": 77,
+   "brier": 0.1028116103896104,
+   "brier_base": 0.20408163265306123,
+   "mean_p": 0.26987012987012987,
+   "freq_yes": 0.2857142857142857
+  },
+  "empresas": {
+   "n": 67,
+   "brier": 0.07391678731343283,
+   "brier_base": 0.23390510135887724,
+   "mean_p": 0.35527611940298515,
+   "freq_yes": 0.373134328358209
+  },
+  "energia": {
+   "n": 135,
+   "brier": 0.045690138888888884,
+   "brier_base": 0.18085048010973934,
+   "mean_p": 0.22833703703703703,
+   "freq_yes": 0.23703703703703705
+  }
+ }
+}
