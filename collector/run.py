@@ -7,8 +7,8 @@ Qué hace cada día:
      hipótesis F3-PM1..PM5 (registradas el 2026-11-04, ver backend/preregistro/). Cada salto reciente en la
      dirección de la hipótesis se anota como SEÑAL PROSPECTIVA: entrada (virtual) en la apertura de la sesión
      siguiente, salida al cierre tras 5 sesiones, resultado = activo − SPY − costos supuestos.
-  3. Calibración prospectiva: mercados que se resuelven DESPUÉS del inicio del despliegue → probabilidad 7 días
-     antes del cierre frente al resultado (Brier).
+  3. Calibración prospectiva: mercados vistos ABIERTOS en una ejecución anterior que después se resuelven →
+     probabilidad 7 días antes del cierre real frente al resultado (Brier).
   4. Precios de ETF: Yahoo (yfinance) y, si falla, Stooq. Si fallan los dos, se registra el error en
      status.json y NO se resuelve ninguna señal (nunca se inventan datos).
 
@@ -137,6 +137,7 @@ def harvest(errors: list) -> dict[str, dict]:
                 "end_date": m.get("endDate") or ev.get("endDate"), "closed": bool(m.get("closed")),
                 "resolved": resolved, "volume": float(m.get("volumeNum") or 0),
                 "yes": prices[0] if prices else None, "token": (_jl(m.get("clobTokenIds")) or [None])[0],
+                "closed_time": m.get("closedTime"),
             }
     return markets
 
@@ -251,20 +252,30 @@ def main(data_dir: Path) -> None:
         snap[k] = snap[k][:40]
     save(data_dir / "polymarket.json", {"updated": now.isoformat(), "categories": snap})
 
-    # 2) calibración prospectiva: mercados resueltos con cierre posterior al inicio del despliegue
-    cal = load(data_dir / "calibracion.json", {"start": START, "markets": {}})
+    # 2) calibración prospectiva: SOLO mercados vistos ABIERTOS en una ejecución anterior que después se
+    # resuelven. Referencia = el momento real de cierre (closedTime, o hoy si falta) si es anterior a la fecha
+    # prevista de fin: muchos mercados se resuelven antes y los precios posteriores ya son 0/1 (información futura).
+    cal = load(data_dir / "calibracion.json", {"start": START, "markets": {}, "seen_open": []})
+    seen_open = set(cal.get("seen_open", []))
     for m in markets.values():
-        if not m["closed"] or not m["resolved"] or not m["end_date"] or m["id"] in cal["markets"]:
+        if not m["closed"] or not m["resolved"] or m["id"] in cal["markets"] or m["id"] not in seen_open:
             continue
-        end = pd.Timestamp(m["end_date"])
-        end = end.tz_convert("UTC") if end.tzinfo else end.tz_localize("UTC")
-        if end < pd.Timestamp(START, tz="UTC") or m["id"] not in hist:
+        if m["id"] not in hist:
             continue
-        pre = hist[m["id"]][hist[m["id"]].index <= end - pd.Timedelta(days=7)]
+        ref = pd.Timestamp(now)
+        for t in (m.get("closed_time"), m["end_date"]):
+            if t:
+                try:
+                    x = pd.Timestamp(t)
+                    ref = min(ref, x.tz_convert("UTC") if x.tzinfo else x.tz_localize("UTC"))
+                except (ValueError, TypeError):
+                    pass
+        pre = hist[m["id"]][hist[m["id"]].index <= ref - pd.Timedelta(days=7)]
         if pre.empty:
             continue
-        cal["markets"][m["id"]] = {"category": m["category"], "question": m["question"], "end": str(end.date()),
+        cal["markets"][m["id"]] = {"category": m["category"], "question": m["question"], "end": str(ref.date()),
                                    "p7": float(pre.iloc[-1]), "yes": m["resolved"].lower() == "yes"}
+    cal["seen_open"] = sorted(seen_open | {m["id"] for m in markets.values() if not m["closed"]})
     summary = {}
     for cat in CATEGORIES:
         rows = [x for x in cal["markets"].values() if x["category"] == cat]
