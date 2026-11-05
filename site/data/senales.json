@@ -1,0 +1,76 @@
+{
+ "start": "2026-11-05",
+ "horizon": 5,
+ "signals": [],
+ "summary": {
+  "F3-PM1_recesion_TLT": {
+   "signals": 0,
+   "resolved": 0,
+   "mean_excess": null,
+   "hit_rate": null
+  },
+  "F3-PM2_recortes_TLT": {
+   "signals": 0,
+   "resolved": 0,
+   "mean_excess": null,
+   "hit_rate": null
+  },
+  "F3-PM3_aranceles_GLD": {
+   "signals": 0,
+   "resolved": 0,
+   "mean_excess": null,
+   "hit_rate": null
+  },
+  "F3-PM4_escalada_GLD": {
+   "signals": 0,
+   "resolved": 0,
+   "mean_excess": null,
+   "hit_rate": null
+  },
+  "F3-PM5_escalada_USO": {
+   "signals": 0,
+   "resolved": 0,
+   "mean_excess": null,
+   "hit_rate": null
+  }
+ },
+ "recent_jumps": {
+  "F3-PM1_recesion_TLT": [],
+  "F3-PM2_recortes_TLT": [],
+  "F3-PM3_aranceles_GLD": [],
+  "F3-PM4_escalada_GLD": [],
+  "F3-PM5_escalada_USO": []
+ },
+ "hypotheses": [
+  {
+   "code": "F3-PM1_recesion_TLT",
+   "category": "recesion",
+   "asset": "TLT",
+   "text": "Si sube la probabilidad de recesión, los bonos largos (TLT) superan a SPY en las sesiones siguientes."
+  },
+  {
+   "code": "F3-PM2_recortes_TLT",
+   "category": "politica_monetaria",
+   "asset": "TLT",
+   "text": "Si sube la probabilidad de recortes de la Fed, TLT supera a SPY."
+  },
+  {
+   "code": "F3-PM3_aranceles_GLD",
+   "category": "aranceles",
+   "asset": "GLD",
+   "text": "Si sube la probabilidad de nuevos aranceles, el oro (GLD) supera a SPY."
+  },
+  {
+   "code": "F3-PM4_escalada_GLD",
+   "category": "geopolitica",
+   "asset": "GLD",
+   "text": "Si sube la probabilidad de escalada militar, GLD supera a SPY."
+  },
+  {
+   "code": "F3-PM5_escalada_USO",
+   "category": "geopolitica",
+   "asset": "USO",
+   "text": "Si sube la probabilidad de escalada militar, el petróleo (USO) supera a SPY."
+  }
+ ]
+}
