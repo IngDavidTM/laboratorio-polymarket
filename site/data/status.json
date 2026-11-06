@@ -1,9 +1,30 @@
 {
- "updated": "2026-11-05T20:25:39.764713+00:00",
- "markets": 1206,
- "with_history": 1193,
+ "updated": "2026-11-06T02:43:39.479709+00:00",
+ "markets": 1201,
+ "with_history": 1188,
  "price_source": "yahoo",
- "assets": {},
+ "assets": {
+  "SPY": {
+   "since_start": 0.0,
+   "last": 733.0,
+   "date": "2026-11-05"
+  },
+  "TLT": {
+   "since_start": 0.0,
+   "last": 81.93000030517578,
+   "date": "2026-11-05"
+  },
+  "GLD": {
+   "since_start": 0.0,
+   "last": 375.489990234375,
+   "date": "2026-11-05"
+  },
+  "USO": {
+   "since_start": 0.0,
+   "last": 148.2100067138672,
+   "date": "2026-11-05"
+  }
+ },
  "errors": [],
  "n_errors": 0
 }
