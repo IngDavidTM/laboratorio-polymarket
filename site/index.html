@@ -125,8 +125,8 @@ ul{margin:6px 0;padding-left:20px}
     <h2>Qué se buscaba</h2>
     <p>Responder con dinero virtual si combinar análisis cuantitativo, macroeconomía (FRED), Polymarket e IA supera a comprar y mantener el S&amp;P 500 (SPY), después de riesgo y costos.</p>
     <div class="stats" style="margin-top:12px">
-      <div class="stat"><b>34</b><span>hipótesis registradas antes de mirar resultados</span></div>
-      <div class="stat"><b>1</b><span>aprobada (un veto, ahora en revisión)</span></div>
+      <div class="stat"><b>35</b><span>hipótesis registradas antes de mirar resultados</span></div>
+      <div class="stat"><b>0</b><span>aprobadas (el veto de dilución se retiró y se repite con datos corregidos)</span></div>
       <div class="stat"><b>0</b><span>estrategias que superan a SPY al mismo riesgo</span></div>
       <div class="stat"><b>6</b><span>en prueba prospectiva (Polymarket, esta web)</span></div>
     </div>
@@ -139,7 +139,7 @@ ul{margin:6px 0;padding-left:20px}
       <li><b>Más riesgo da más rentabilidad, pero en proporción.</b> SSO (S&amp;P 500 al doble) con filtro de tendencia rindió 15,3 %/año frente a 13,3 % de SPY, pero −4,2 %/año frente a SPY al mismo riesgo.</li>
       <li><b>Lo único confirmado ayuda a evitar, no a ganar:</b> las empresas que aumentan sus acciones ≥ 10 % en un año rindieron ~7,5 %/año menos que el mercado en la prueba sellada 2020-2026 (p 0,020; no supera la corrección más estricta por 24 pruebas).</li>
       <li><b>Polymarket predice muy bien los acontecimientos</b> (Brier mucho mejor que la referencia en las 10 categorías), pero eso no implica que anticipe los precios. Se mide aquí, hacia adelante.</li>
-      <li><b>El índice sin empresas que diluyen no mejora al índice</b> (fase 5): con los datos de acciones corregidos, +0,09 %/año (t 0,89). De paso se vio que el 41 % de las señales de dilución del veto aprobado eran splits o errores de datos: ese veto queda en revisión.</li>
+      <li><b>El índice sin empresas que diluyen no mejora al índice</b> (fase 5): con los datos de acciones corregidos, +0,09 %/año (t 0,89). De paso se vio que el 41 % de las señales de dilución del veto aprobado eran splits o errores de datos: se le retiró la aprobación y la idea se registró de nuevo con datos corregidos (F5-D1): en 2011-2019 sigue saliendo (−5,1 %/año, t 3,12), pero solo se aprobará si se confirma con señales en vivo.</li>
       <li><b>Dentro de Polymarket tampoco hay dinero fácil</b> (fase 4, 9 hipótesis): favoritos, comprar NO, saltos, poner liquidez y arbitraje de suma pierden o no se pueden ejecutar a precios reales. Las ganancias aparentes salían de cotizaciones de libros vacíos. Ver «Microestructura».</li>
       <li><b>La IA</b> (llama3 local y Gemini 2.5 Flash) leyendo documentos de la SEC no añadió nada medible.</li>
       <li><b>Con $50, la mejor decisión fue siempre SPY</b>, o efectivo para las carteras activas cuando no hay ventaja.</li>
@@ -171,7 +171,7 @@ ul{margin:6px 0;padding-left:20px}
   </div>
 
   <div class="card">
-    <h2>Las 34 hipótesis</h2>
+    <h2>Las 35 hipótesis</h2>
     <div class="cats" id="hfilter"></div>
     <div class="tbl"><table id="htab"></table></div>
   </div>
@@ -251,7 +251,7 @@ get("micro.json").then(d=>{
 
 get("hipotesis.json").then(d=>{if(!d)return;
   const H=d.hypotheses;const engs=["todas",...new Set(H.map(h=>h.engine))];let cur="todas";
-  const st=h=>h.status==="aprobada"?'<span class="chip ok">aprobada</span>':h.status==="desarrollo_fallida"?'<span class="chip bad">rechazada en desarrollo</span>':h.status==="prueba_fallida"?'<span class="chip bad">rechazada en prueba sellada</span>':h.status==="invalidada"?'<span class="chip bad">invalidada (artefacto de datos)</span>':`<span class="chip">${esc(h.status)}</span>`;
+  const st=h=>h.status==="aprobada"?'<span class="chip ok">aprobada</span>':h.status==="desarrollo_fallida"?'<span class="chip bad">rechazada en desarrollo</span>':h.status==="prueba_fallida"?'<span class="chip bad">rechazada en prueba sellada</span>':h.status==="en_revision"?'<span class="chip">aprobación retirada (en revisión)</span>':h.status==="prospectiva"?'<span class="chip">en prueba prospectiva</span>':h.status==="invalidada"?'<span class="chip bad">invalidada (artefacto de datos)</span>':`<span class="chip">${esc(h.status)}</span>`;
   const draw=()=>{$("#hfilter").innerHTML=engs.map(e=>`<button class="${e===cur?"on":""}" data-e="${e}">${e==="todas"?"Todas":ENG[e]||e}</button>`).join("");
     $("#hfilter").querySelectorAll("button").forEach(b=>b.onclick=()=>{cur=b.dataset.e;draw()});
     $("#htab").innerHTML=`<tr><th>Código</th><th>Idea</th><th>Estado</th><th>Veredicto</th></tr>`+H.filter(h=>cur==="todas"||h.engine===cur).map(h=>`<tr><td><b>${esc(h.code)}</b><div class="mut">${ENG[h.engine]||esc(h.engine)}</div></td><td>${esc(h.title)}</td><td>${st(h)}</td><td class="mut">${esc(h.verdict)}</td></tr>`).join("")};

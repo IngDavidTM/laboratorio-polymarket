@@ -38,8 +38,8 @@
    "engine": "descubrimiento",
    "title": "Empresas que aumentan sus acciones en circulación ≥ 10 % interanual quedan por debajo del mercado.",
    "hypothesis": "Empresas que aumentan sus acciones en circulación ≥ 10 % interanual quedan por debajo del mercado.",
-   "status": "aprobada",
-   "verdict": "APROBADA: exceso beta_neutral@1.0 en prueba sellada +7.5%/año, p ajustado 0.020, costos×2 > 0 EN REVISIÓN (2026-11-10): el 41 % de sus señales dentro del S&P 500 eran splits o errores de datos; ver F5-I1.",
+   "status": "en_revision",
+   "verdict": "APROBADA: exceso beta_neutral@1.0 en prueba sellada +7.5%/año, p ajustado 0.020, costos×2 > 0 EN REVISIÓN (2026-11-10): el 41 % de sus señales dentro del S&P 500 eran splits o errores de datos (F5-I1). Aprobación retirada: ya no veta en la cartera G. Sustituida por F5-D1 (solo prospectiva).",
    "registered_at": "2026-11-04",
    "rules_hash": "dcfd8b4dc4ce99c6",
    "test_evaluated": true
@@ -372,6 +372,17 @@
    "verdict": "RECHAZADA en desarrollo: con las acciones corregidas la réplica del índice ya es buena (12,2 %/año frente a 11,7 % de SPY, error de seguimiento 0,8 %), y quitar las dilutivas (14 empresas de media) añade solo +0,09 %/año (t 0,89). La prueba sellada no se abrió.",
    "registered_at": "2026-11-10",
    "rules_hash": "106421a76b87d059",
+   "test_evaluated": false
+  },
+  {
+   "code": "F5-D1_dilucion_corregida",
+   "engine": "descubrimiento",
+   "title": "Evitar empresas que diluyen ≥ 10 % (acciones corregidas por splits y errores de unidades)",
+   "hypothesis": "Las empresas cuyas acciones en circulación, corregidas por splits y errores de unidades, crecen ≥ 10 % interanual quedan por debajo del mercado en las 60 sesiones siguientes.",
+   "status": "prospectiva",
+   "verdict": "EN PROSPECTIVA: con las acciones corregidas y el universo completo (1.638 empresas con dato), las dilutivas quedaron un 5,1 %/año por debajo ajustado por beta en 2011-2019 (t 3,12; con los datos sin corregir era 4,5 %, t 2,85). No tiene prueba sellada histórica (2020+ ya se había visto con F3-D1): se decide con señales en vivo, una sola evaluación al llegar a 100 señales resueltas en 12 meses o más. Hasta entonces no veta nada.",
+   "registered_at": "2026-11-10",
+   "rules_hash": "5b60d01840ff0317",
    "test_evaluated": false
   }
  ],
