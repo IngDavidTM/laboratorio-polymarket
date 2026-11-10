@@ -39,7 +39,7 @@
    "title": "Empresas que aumentan sus acciones en circulación ≥ 10 % interanual quedan por debajo del mercado.",
    "hypothesis": "Empresas que aumentan sus acciones en circulación ≥ 10 % interanual quedan por debajo del mercado.",
    "status": "aprobada",
-   "verdict": "APROBADA: exceso beta_neutral@1.0 en prueba sellada +7.5%/año, p ajustado 0.020, costos×2 > 0",
+   "verdict": "APROBADA: exceso beta_neutral@1.0 en prueba sellada +7.5%/año, p ajustado 0.020, costos×2 > 0 EN REVISIÓN (2026-11-10): el 41 % de sus señales dentro del S&P 500 eran splits o errores de datos; ver F5-I1.",
    "registered_at": "2026-11-04",
    "rules_hash": "dcfd8b4dc4ce99c6",
    "test_evaluated": true
@@ -361,6 +361,17 @@
    "verdict": "RECHAZADA en desarrollo: medido contra el precio 1 h y 24 h después, el proveedor gana +0,6 % y −2,2 % por dólar (t −0,33 y −1,53): la selección adversa se come el diferencial.",
    "registered_at": "2026-11-10",
    "rules_hash": "4e5fbf78ff49d9f4",
+   "test_evaluated": false
+  },
+  {
+   "code": "F5-I1_indice_sin_dilutivas_v2",
+   "engine": "solida",
+   "title": "S&P 500 sin dilutivas, con acciones corregidas",
+   "hypothesis": "Quitar del S&P 500 ponderado por capitalización a las empresas cuyas acciones (corregidas por splits y errores de unidades) crecen ≥ 10 % interanual mejora el retorno neto.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: con las acciones corregidas la réplica del índice ya es buena (12,2 %/año frente a 11,7 % de SPY, error de seguimiento 0,8 %), y quitar las dilutivas (14 empresas de media) añade solo +0,09 %/año (t 0,89). La prueba sellada no se abrió.",
+   "registered_at": "2026-11-10",
+   "rules_hash": "106421a76b87d059",
    "test_evaluated": false
   }
  ],
