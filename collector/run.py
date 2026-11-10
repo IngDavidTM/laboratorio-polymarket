@@ -342,6 +342,13 @@ def main(data_dir: Path) -> None:
         if len(base):
             ref = {a: {"since_start": float(c[a].iat[-1] / base[a].iat[0] - 1),
                        "last": float(c[a].iat[-1]), "date": str(c.index[-1].date())} for a in ASSETS}
+    # 5) microestructura (fase 4): diferenciales reales y arbitraje de suma en papel con libros reales
+    try:
+        import micro
+        save(data_dir / "micro.json", micro.run(load(data_dir / "micro.json", {}), get_json, now, errors))
+    except Exception as e:  # noqa: BLE001
+        errors.append(f"micro: {e}")
+
     save(data_dir / "status.json", {"updated": now.isoformat(), "markets": len(markets), "with_history": len(hist),
                                     "price_source": src, "assets": ref, "errors": errors[:50],
                                     "n_errors": len(errors)})

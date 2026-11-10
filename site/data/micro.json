@@ -1,0 +1,53 @@
+{
+ "start": "2026-11-10",
+ "trades": [],
+ "daily": [
+  {
+   "day": "2026-11-10",
+   "universe": 4796,
+   "events_scanned": 263,
+   "arb_found": 0,
+   "median_cost_all_yes": 1.0675244000000002,
+   "min_cost_all_yes": 0.93249315,
+   "median_cost_all_no_ratio": 1.01671443,
+   "min_cost_all_no_ratio": 1.0010337657142858,
+   "spreads": {
+    ">=1M": {
+     "n": 397,
+     "median_half_spread": 0.0005000000000000004
+    },
+    "100k-1M": {
+     "n": 908,
+     "median_half_spread": 0.0050000000000000044
+    },
+    "10k-100k": {
+     "n": 3491,
+     "median_half_spread": 0.010000000000000002
+    }
+   }
+  }
+ ],
+ "updated": "2026-11-10T16:47:24.999200+00:00",
+ "universe": 4796,
+ "spreads": {
+  ">=1M": {
+   "n": 397,
+   "median_half_spread": 0.0005000000000000004
+  },
+  "100k-1M": {
+   "n": 908,
+   "median_half_spread": 0.0050000000000000044
+  },
+  "10k-100k": {
+   "n": 3491,
+   "median_half_spread": 0.010000000000000002
+  }
+ },
+ "events_scanned": 263,
+ "arb_found_today": 0,
+ "summary": {},
+ "rules": {
+  "F4-C1": null,
+  "F4-N1": null
+ }
+}

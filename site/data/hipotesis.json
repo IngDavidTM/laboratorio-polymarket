@@ -263,6 +263,105 @@
    "registered_at": "2026-11-05",
    "rules_hash": "3e643fa856a2e6d0",
    "test_evaluated": false
+  },
+  {
+   "code": "F4-C1_favoritos_vencimiento",
+   "engine": "micro",
+   "title": "Comprar el favorito cerca del vencimiento",
+   "hypothesis": "Comprar el lado favorito (precio alto) cerca del vencimiento y esperar la resolución deja ganancia neta.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: las 12 variantes pierden (−1,4 % a −3,6 % por operación; 14.480 operaciones en la mayor). El favorito gana tantas veces como dice su precio y los costos dejan el resultado en negativo.",
+   "registered_at": "2026-11-10",
+   "rules_hash": "803b960679f11610",
+   "test_evaluated": false
+  },
+  {
+   "code": "F4-N1_no_pasa_nada",
+   "engine": "micro",
+   "title": "Comprar NO en preguntas sí/no («no pasa nada»)",
+   "hypothesis": "En preguntas sí/no, comprar NO cuando el SÍ cotiza barato deja ganancia neta (el SÍ está sobrevalorado).",
+   "status": "prueba_fallida",
+   "verdict": "RECHAZADA en la prueba sellada: en desarrollo la banda 0,50-0,80 pasó (+9,6 % semanal, t 2,40), pero en 2026-03+ queda en +2,7 % (t 0,75; 9.240 operaciones) y es negativa con costos ×2. El diagnóstico muestra que la ganancia venía de cotizaciones de libros vacíos (sin operaciones).",
+   "registered_at": "2026-11-10",
+   "rules_hash": "350dd63b774a0085",
+   "test_evaluated": true
+  },
+  {
+   "code": "F4-N2_no_ejecutable",
+   "engine": "micro",
+   "title": "Comprar NO pagando precios reales",
+   "hypothesis": "Comprar NO en preguntas sí/no deja ganancia neta también cuando se exige negociación previa y se paga el precio real.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: exigiendo negociación previa y pagando el precio de operaciones reales, el NO gana justo lo que dice su precio (41 % de aciertos a 0,41) y pierde tras costos (−3 % a −16 %); además solo 60-145 operaciones (mínimo 200).",
+   "registered_at": "2026-11-10",
+   "rules_hash": "21798a1138aafc1e",
+   "test_evaluated": false
+  },
+  {
+   "code": "F4-J1_reversion_salto",
+   "engine": "micro",
+   "title": "Operar contra un salto diario",
+   "hypothesis": "Tras un salto diario grande del precio, operar en contra gana (sobrerreacción).",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: operar contra un salto diario ≥ 10 pp pierde un 9-14 % por operación (33.488 operaciones, t −15 a −1,4).",
+   "registered_at": "2026-11-10",
+   "rules_hash": "894c26827b6ce730",
+   "test_evaluated": false
+  },
+  {
+   "code": "F4-J2_continuacion_salto",
+   "engine": "micro",
+   "title": "Operar a favor de un salto diario",
+   "hypothesis": "Tras un salto diario grande del precio, operar a favor gana (reacción insuficiente).",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: operar a favor del salto pierde lo mismo (11-14 %, t −19 a −6). Que las dos direcciones pierdan igual indica que no hay ventaja bruta y que el costo de entrar y salir se lo come todo.",
+   "registered_at": "2026-11-10",
+   "rules_hash": "af88cacc2434abe2",
+   "test_evaluated": false
+  },
+  {
+   "code": "F4-A1_arbitraje_suma",
+   "engine": "micro",
+   "title": "Arbitraje de suma (precios diarios)",
+   "hypothesis": "En eventos de resultados excluyentes, comprar todos los SÍ (o todos los NO) cuando la suma se desvía deja ganancia.",
+   "status": "invalidada",
+   "verdict": "INVALIDADA (artefacto de datos): con precios diarios «gana» un 22 % por operación con 99,5 % de aciertos, pero la mitad de los casos tiene patas cotizando exactamente 0,50 (libro vacío). F4-A2 demuestra que no era ejecutable. La prueba sellada NO se calculó.",
+   "registered_at": "2026-11-10",
+   "rules_hash": "491e6eecb543f7f6",
+   "test_evaluated": false
+  },
+  {
+   "code": "F4-A2_arbitraje_real",
+   "engine": "micro",
+   "title": "Arbitraje de suma a precios reales",
+   "hypothesis": "El arbitraje de suma sigue dejando ganancia cuando se paga el precio de las operaciones reales en todas las patas.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: de 1.015 señales, solo 74 tuvieron operaciones reales en todas las patas al día siguiente y solo 3 seguían siendo arbitraje a esos precios (+3,6 %). Sin muestra.",
+   "registered_at": "2026-11-10",
+   "rules_hash": "67ceba8e616c7230",
+   "test_evaluated": false
+  },
+  {
+   "code": "F4-M1_ventaja_proveedor",
+   "engine": "micro",
+   "title": "Poner liquidez: ganancia frente a la resolución",
+   "hypothesis": "Los tomadores pierden de media más que la comisión: quien pone las órdenes pasivas gana antes de recompensas.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: en 1,31 millones de operaciones reales (1.300 mercados) el conjunto de proveedores de liquidez pierde un 2,1 % por dólar frente a la resolución (t −0,62). Los tomadores no regalan dinero.",
+   "registered_at": "2026-11-10",
+   "rules_hash": "e25f77b53ca23eb3",
+   "test_evaluated": false
+  },
+  {
+   "code": "F4-M2_proveedor_markout",
+   "engine": "micro",
+   "title": "Poner liquidez: ganancia a 1 h y 24 h",
+   "hypothesis": "El proveedor de liquidez gana si se mide contra el precio un día después (diferencial realizado), no contra la resolución.",
+   "status": "desarrollo_fallida",
+   "verdict": "RECHAZADA en desarrollo: medido contra el precio 1 h y 24 h después, el proveedor gana +0,6 % y −2,2 % por dólar (t −0,33 y −1,53): la selección adversa se come el diferencial.",
+   "registered_at": "2026-11-10",
+   "rules_hash": "4e5fbf78ff49d9f4",
+   "test_evaluated": false
   }
  ],
  "polymarket_quality_historica": {

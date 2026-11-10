@@ -56,6 +56,7 @@ ul{margin:6px 0;padding-left:20px}
   <nav id="tabs">
     <button data-t="pm" class="on">Polymarket hoy</button>
     <button data-t="live">Prueba en vivo</button>
+    <button data-t="micro">Microestructura</button>
     <button data-t="know">Conocimiento</button>
   </nav>
 </div></header>
@@ -90,15 +91,44 @@ ul{margin:6px 0;padding-left:20px}
   <div class="card hidden" id="errcard"><h2>Errores de las fuentes en la última ejecución</h2><p class="mut">No se inventan datos: si una fuente falla, se muestra aquí y lo que depende de ella queda pendiente.</p><ul id="errs"></ul></div>
 </section>
 
+<section id="micro" class="hidden">
+  <div class="card">
+    <h2>¿Se puede ganar operando dentro de Polymarket?</h2>
+    <p>Fase 4 (2026-11-10). Nueve reglas registradas antes de mirar resultados y evaluadas con el historial diario de 53.646 mercados resueltos (periodo de desarrollo), 35.540 eventos de varios resultados y 1,3 millones de operaciones reales. <b>Ninguna deja ganancia a precios ejecutables.</b> Todo es simulación: no se opera con dinero real.</p>
+    <div class="tbl"><table>
+      <tr><th>Idea</th><th>Resultado histórico</th></tr>
+      <tr><td>Comprar el favorito cerca del vencimiento</td><td class="mut">Pierde 1,4-3,6 % por operación: gana tantas veces como dice su precio y los costos sobran.</td></tr>
+      <tr><td>Comprar NO («casi nunca pasa nada»)</td><td class="mut">Pasó el desarrollo, falló la prueba sellada (t 0,75; negativa con costos ×2). A precios de operaciones reales pierde.</td></tr>
+      <tr><td>Operar contra / a favor de un salto diario</td><td class="mut">Las dos direcciones pierden 9-14 % por operación: no hay ventaja y el costo se lo come todo.</td></tr>
+      <tr><td>Poner liquidez (ganar el diferencial)</td><td class="mut">En 1,31 millones de operaciones el proveedor pierde 2,1 % por dólar frente a la resolución; a 1 h gana +0,6 % sin significación.</td></tr>
+      <tr><td>Arbitraje de suma (comprar todos los resultados por menos de lo que pagan)</td><td class="mut">Con precios diarios «ganaba» 22 %, pero eran cotizaciones de libros vacíos. De 1.015 señales, 3 eran ejecutables. Se mide abajo con libros reales.</td></tr>
+    </table></div>
+  </div>
+  <div class="card">
+    <h2>Arbitraje de suma, con libros de órdenes reales</h2>
+    <p class="mut">Cada día se revisan los eventos con varios resultados excluyentes: si comprar TODOS los «sí» (o todos los «no») cuesta, con comisión y al precio de venta real del libro, al menos un 2 % menos de lo que pagarán, se anota una operación simulada y se sigue hasta la resolución. Coste 1,00 = sin ganancia.</p>
+    <div class="stats" id="mstats"></div>
+    <div class="tbl" style="margin-top:12px"><table id="mdaily"></table></div>
+    <h3 style="margin-top:16px">Operaciones simuladas</h3>
+    <div class="tbl"><table id="mtrades"></table></div>
+    <p class="mut">«Evento ampliable»: el organizador puede añadir resultados nuevos («otro»); si gana uno que no existía al comprar, se pierde todo. No es un arbitraje sin riesgo.</p>
+  </div>
+  <div class="card">
+    <h2>Diferencial real entre compra y venta</h2>
+    <p class="mut">Mediana de la mitad del diferencial (lo que se paga por cruzar) en mercados abiertos, por volumen negociado. En contratos que valen entre 0 y 1.</p>
+    <div class="tbl"><table id="mspread"></table></div>
+  </div>
+</section>
+
 <section id="know" class="hidden">
   <div class="card">
     <h2>Qué se buscaba</h2>
     <p>Responder con dinero virtual si combinar análisis cuantitativo, macroeconomía (FRED), Polymarket e IA supera a comprar y mantener el S&amp;P 500 (SPY), después de riesgo y costos.</p>
     <div class="stats" style="margin-top:12px">
-      <div class="stat"><b>24</b><span>hipótesis registradas antes de mirar resultados</span></div>
+      <div class="stat"><b>33</b><span>hipótesis registradas antes de mirar resultados</span></div>
       <div class="stat"><b>1</b><span>aprobada (es un veto, no una compra)</span></div>
       <div class="stat"><b>0</b><span>estrategias que superan a SPY al mismo riesgo</span></div>
-      <div class="stat"><b>5</b><span>en prueba prospectiva (Polymarket, esta web)</span></div>
+      <div class="stat"><b>6</b><span>en prueba prospectiva (Polymarket, esta web)</span></div>
     </div>
   </div>
 
@@ -109,6 +139,7 @@ ul{margin:6px 0;padding-left:20px}
       <li><b>Más riesgo da más rentabilidad, pero en proporción.</b> SSO (S&amp;P 500 al doble) con filtro de tendencia rindió 15,3 %/año frente a 13,3 % de SPY, pero −4,2 %/año frente a SPY al mismo riesgo.</li>
       <li><b>Lo único confirmado ayuda a evitar, no a ganar:</b> las empresas que aumentan sus acciones ≥ 10 % en un año rindieron ~7,5 %/año menos que el mercado en la prueba sellada 2020-2026 (p 0,020; no supera la corrección más estricta por 24 pruebas).</li>
       <li><b>Polymarket predice muy bien los acontecimientos</b> (Brier mucho mejor que la referencia en las 10 categorías), pero eso no implica que anticipe los precios. Se mide aquí, hacia adelante.</li>
+      <li><b>Dentro de Polymarket tampoco hay dinero fácil</b> (fase 4, 9 hipótesis): favoritos, comprar NO, saltos, poner liquidez y arbitraje de suma pierden o no se pueden ejecutar a precios reales. Las ganancias aparentes salían de cotizaciones de libros vacíos. Ver «Microestructura».</li>
       <li><b>La IA</b> (llama3 local y Gemini 2.5 Flash) leyendo documentos de la SEC no añadió nada medible.</li>
       <li><b>Con $50, la mejor decisión fue siempre SPY</b>, o efectivo para las carteras activas cuando no hay ventaja.</li>
     </ul>
@@ -139,7 +170,7 @@ ul{margin:6px 0;padding-left:20px}
   </div>
 
   <div class="card">
-    <h2>Las 24 hipótesis</h2>
+    <h2>Las 33 hipótesis</h2>
     <div class="cats" id="hfilter"></div>
     <div class="tbl"><table id="htab"></table></div>
   </div>
@@ -159,7 +190,7 @@ ul{margin:6px 0;padding-left:20px}
 <script>
 const $=s=>document.querySelector(s);
 const CAT={recesion:"Recesión",inflacion:"Inflación",politica_monetaria:"Política monetaria",aranceles:"Aranceles",elecciones:"Elecciones",geopolitica:"Geopolítica",regulacion:"Regulación",fiscal:"Fiscal",empresas:"Empresas",energia:"Energía"};
-const ENG={eventos:"Eventos SEC/FDA",descubrimiento:"Fundamentales",polymarket:"Polymarket",senal_pendiente:"Señal pendiente",ia:"IA",solida:"Riesgo y mezclas"};
+const ENG={micro:"Microestructura Polymarket",eventos:"Eventos SEC/FDA",descubrimiento:"Fundamentales",polymarket:"Polymarket",senal_pendiente:"Señal pendiente",ia:"IA",solida:"Riesgo y mezclas"};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const pct=(x,d=1)=>x==null?"—":(x*100).toLocaleString("es",{minimumFractionDigits:d,maximumFractionDigits:d})+" %";
 const spct=(x,d=2)=>x==null?"—":`<span class="${x>0?"pos":x<0?"neg":""}">${x>0?"+":""}${pct(x,d)}</span>`;
@@ -172,9 +203,9 @@ function spark(a){if(!a||a.length<2)return"";const w=80,h=22,mn=Math.min(...a),m
   return `<svg class="sp" width="${w}" height="${h}"><polyline fill="none" stroke="var(--acc)" stroke-width="1.5" points="${pts}"/></svg>`}
 document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
   document.querySelectorAll("#tabs button").forEach(x=>x.classList.toggle("on",x===b));
-  ["pm","live","know"].forEach(t=>$("#"+t).classList.toggle("hidden",t!==b.dataset.t));
+  ["pm","live","micro","know"].forEach(t=>$("#"+t).classList.toggle("hidden",t!==b.dataset.t));
   history.replaceState(null,"","#"+b.dataset.t)});
-const h0=location.hash.slice(1);if(["pm","live","know"].includes(h0))document.querySelector(`#tabs button[data-t=${h0}]`).click();
+const h0=location.hash.slice(1);if(["pm","live","micro","know"].includes(h0))document.querySelector(`#tabs button[data-t=${h0}]`).click();
 
 get("polymarket.json").then(d=>{
   if(!d){$("#pmt").innerHTML="<tr><td>Aún no hay datos (el recolector se ejecuta una vez al día).</td></tr>";return}
@@ -208,9 +239,18 @@ Promise.all([get("senales.json"),get("calibracion.json"),get("status.json")]).th
     if(st.n_errors){$("#errcard").classList.remove("hidden");$("#errs").innerHTML=st.errors.map(e=>`<li class="mut">${esc(e)}</li>`).join("")+(st.n_errors>st.errors.length?`<li class="mut">… y ${st.n_errors-st.errors.length} más</li>`:"")}
   }});
 
+get("micro.json").then(d=>{
+  if(!d){$("#mstats").innerHTML="<p class='mut'>Aún no hay datos (el recolector se ejecuta una vez al día).</p>";return}
+  const T=d.trades||[],res=T.filter(t=>t.outcome),dl=d.daily||[];
+  const mr=res.length?res.reduce((a,t)=>a+t.outcome.ret,0)/res.length:null;
+  $("#mstats").innerHTML=`<div class="stat"><b>${dl.length}</b><span>días revisados desde ${esc(d.start)}</span></div><div class="stat"><b>${d.events_scanned??"—"}</b><span>eventos revisados hoy</span></div><div class="stat"><b>${T.length}</b><span>candidatos anotados</span></div><div class="stat"><b>${res.length?spct(mr):"—"}</b><span>resultado medio (${res.length} resueltos)</span></div>`;
+  $("#mdaily").innerHTML=`<tr><th>Día</th><th class="n">Eventos</th><th class="n">Candidatos</th><th class="n">Coste mediano todos los SÍ</th><th class="n">Mínimo</th><th class="n">Coste mediano todos los NO (÷ pago)</th><th class="n">Mínimo</th></tr>`+dl.slice(-30).reverse().map(x=>`<tr><td>${esc(x.day)}</td><td class="n">${x.events_scanned}</td><td class="n">${x.arb_found}</td><td class="n">${num(x.median_cost_all_yes)}</td><td class="n">${num(x.min_cost_all_yes)}</td><td class="n">${num(x.median_cost_all_no_ratio)}</td><td class="n">${num(x.min_cost_all_no_ratio)}</td></tr>`).join("");
+  $("#mtrades").innerHTML=T.length?`<tr><th>Día</th><th>Evento</th><th>Compra</th><th class="n">Coste</th><th class="n">Paga</th><th class="n">Margen</th><th class="n">Disponible</th><th>Resultado</th></tr>`+T.slice().reverse().map(t=>`<tr><td>${esc(t.day)}</td><td><a href="https://polymarket.com/event/${esc(t.slug)}" target="_blank" rel="noopener">${esc(t.question)}</a>${t.augmented?' <span class="chip">evento ampliable</span>':""}</td><td>${esc(t.bought)}${t.n_legs?` (${t.n_legs})`:""}</td><td class="n">${num(t.cost)}</td><td class="n">${t.target??"—"}</td><td class="n">${spct(t.edge)}</td><td class="n">${t.depth_usd!=null?usd(t.depth_usd):"—"}</td><td>${t.outcome?spct(t.outcome.ret):'<span class="mut">abierta</span>'}</td></tr>`).join(""):"<tr><td class='mut'>Ningún candidato todavía: a precios reales las sumas no dejan margen.</td></tr>";
+  $("#mspread").innerHTML=`<tr><th>Volumen negociado</th><th class="n">Mercados</th><th class="n">Medio diferencial mediano</th></tr>`+Object.entries(d.spreads||{}).map(([k,v])=>`<tr><td>${esc(k)} $</td><td class="n">${v.n}</td><td class="n">${num(v.median_half_spread,4)}</td></tr>`).join("")});
+
 get("hipotesis.json").then(d=>{if(!d)return;
   const H=d.hypotheses;const engs=["todas",...new Set(H.map(h=>h.engine))];let cur="todas";
-  const st=h=>h.status==="aprobada"?'<span class="chip ok">aprobada</span>':h.status==="desarrollo_fallida"?'<span class="chip bad">rechazada en desarrollo</span>':`<span class="chip">${esc(h.status)}</span>`;
+  const st=h=>h.status==="aprobada"?'<span class="chip ok">aprobada</span>':h.status==="desarrollo_fallida"?'<span class="chip bad">rechazada en desarrollo</span>':h.status==="prueba_fallida"?'<span class="chip bad">rechazada en prueba sellada</span>':h.status==="invalidada"?'<span class="chip bad">invalidada (artefacto de datos)</span>':`<span class="chip">${esc(h.status)}</span>`;
   const draw=()=>{$("#hfilter").innerHTML=engs.map(e=>`<button class="${e===cur?"on":""}" data-e="${e}">${e==="todas"?"Todas":ENG[e]||e}</button>`).join("");
     $("#hfilter").querySelectorAll("button").forEach(b=>b.onclick=()=>{cur=b.dataset.e;draw()});
     $("#htab").innerHTML=`<tr><th>Código</th><th>Idea</th><th>Estado</th><th>Veredicto</th></tr>`+H.filter(h=>cur==="todas"||h.engine===cur).map(h=>`<tr><td><b>${esc(h.code)}</b><div class="mut">${ENG[h.engine]||esc(h.engine)}</div></td><td>${esc(h.title)}</td><td>${st(h)}</td><td class="mut">${esc(h.verdict)}</td></tr>`).join("")};
