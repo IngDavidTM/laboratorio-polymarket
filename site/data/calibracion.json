@@ -1,25 +1,11 @@
 {
  "start": "2026-11-05",
  "markets": {
-  "4641065": {
-   "category": "geopolitica",
-   "question": "US x Iran ceasefire continues through October 31?",
-   "end": "2026-10-31",
-   "p7": 0.75,
-   "yes": true
-  },
   "1499672": {
    "category": "empresas",
    "question": "Will Apple release a touchscreen MacBook in 2026?",
    "end": "2026-11-06",
    "p7": 0.9985,
-   "yes": true
-  },
-  "5177555": {
-   "category": "politica_monetaria",
-   "question": "Will Donald Trump publicly insult Ken Paxton by October 31, 2026?",
-   "end": "2026-10-31",
-   "p7": 0.08,
    "yes": true
   }
  },
@@ -251,21 +237,5 @@
   "691547",
   "920210"
  ],
- "summary": {
-  "politica_monetaria": {
-   "n": 1,
-   "brier": 0.8464,
-   "brier_base": 0.0
-  },
-  "geopolitica": {
-   "n": 1,
-   "brier": 0.0625,
-   "brier_base": 0.0
-  },
-  "empresas": {
-   "n": 1,
-   "brier": 2.2499999999998374e-06,
-   "brier_base": 0.0
-  }
- }
+ "summary": {}
 }

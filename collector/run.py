@@ -270,6 +270,8 @@ def main(data_dir: Path) -> None:
                     ref = min(ref, x.tz_convert("UTC") if x.tzinfo else x.tz_localize("UTC"))
                 except (ValueError, TypeError):
                     pass
+        if ref < pd.Timestamp(START, tz="UTC"):  # el periodo del evento terminó antes del despliegue
+            continue
         pre = hist[m["id"]][hist[m["id"]].index <= ref - pd.Timedelta(days=7)]
         if pre.empty:
             continue
