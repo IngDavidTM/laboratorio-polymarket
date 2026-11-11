@@ -4,7 +4,8 @@ Qué hace cada día:
   1. Polymarket: mercados con volumen ≥ $100.000 de 10 categorías (mismas búsquedas y límites que la
      fase 3), probabilidad actual del «Sí» y su historial DIARIO (CLOB, fidelity=1440).
   2. Saltos: variación diaria ≥ 10 puntos, agregada por categoría y día con las reglas CONGELADAS de las
-     hipótesis F3-PM1..PM5 (registradas el 2026-11-04, ver backend/preregistro/). Cada salto reciente en la
+     hipótesis F3-PM1..PM5 (registradas el 2026-11-04, ver backend/preregistro/) y de la familia
+     F6-PS1..PS8 «Polymarket → sectores» (registrada el 2026-11-11; señales desde el 2026-11-12). Cada salto reciente en la
      dirección de la hipótesis se anota como SEÑAL PROSPECTIVA: entrada (virtual) en la apertura de la sesión
      siguiente, salida al cierre tras 5 sesiones, resultado = activo − SPY − costos supuestos.
   3. Calibración prospectiva: mercados vistos ABIERTOS en una ejecución anterior que después se resuelven →
@@ -20,6 +21,7 @@ from __future__ import annotations
 
 import io
 import json
+import math
 import re
 import sys
 import time
@@ -68,7 +70,66 @@ HYPOTHESES = [
     ("F3-PM5_escalada_USO", "geopolitica", r"\b(war|invade|invasion|strike|attack)", r"\b(ceasefire|peace|deal)", "USO", +1,
      "Si sube la probabilidad de escalada militar, el petróleo (USO) supera a SPY."),
 ]
-ASSETS = ["SPY", "TLT", "GLD", "USO"]
+ASSETS = ["SPY", "TLT", "GLD", "USO", "XLI", "FXI", "KRE", "ITB", "XLE", "ITA", "XLP", "XLU"]
+
+# Familia F6-PS «Polymarket → sectores» (registrada el 2026-11-11, solo prospectiva). Copia literal de
+# backend/app/research/pm_sectors.py: hipótesis, constantes del criterio y evaluate().
+# (código, categoría, patrón «sí», patrón «no», ETF, signo, texto). Signo −1: la señal es la CAÍDA del escenario.
+HYPOTHESES_PS = [
+    ("F6-PS1_aranceles_XLI", "aranceles", r"tariff", r"\b(no tariff|deal|pause|exempt)", "XLI", -1,
+     "Si baja la probabilidad de nuevos aranceles, las industriales (XLI) superan a SPY en las 5 sesiones siguientes."),
+    ("F6-PS2_aranceles_FXI", "aranceles", r"tariff", r"\b(no tariff|deal|pause|exempt)", "FXI", -1,
+     "Si baja la probabilidad de nuevos aranceles, las grandes empresas chinas (FXI) superan a SPY."),
+    ("F6-PS3_recortes_KRE", "politica_monetaria", r"\b(cut|decrease|lower)", r"\bno (cut|change)\b", "KRE", +1,
+     "Si sube la probabilidad de recortes de la Fed, los bancos regionales (KRE) superan a SPY."),
+    ("F6-PS4_recortes_ITB", "politica_monetaria", r"\b(cut|decrease|lower)", r"\bno (cut|change)\b", "ITB", +1,
+     "Si sube la probabilidad de recortes de la Fed, las constructoras de vivienda (ITB) superan a SPY."),
+    ("F6-PS5_escalada_XLE", "geopolitica", r"\b(war|invade|invasion|strike|attack)", r"\b(ceasefire|peace|deal)", "XLE", +1,
+     "Si sube la probabilidad de escalada militar, las energéticas (XLE) superan a SPY."),
+    ("F6-PS6_escalada_ITA", "geopolitica", r"\b(war|invade|invasion|strike|attack)", r"\b(ceasefire|peace|deal)", "ITA", +1,
+     "Si sube la probabilidad de escalada militar, las empresas de defensa (ITA) superan a SPY."),
+    ("F6-PS7_recesion_XLP", "recesion", r"recession", r"\bno recession\b", "XLP", +1,
+     "Si sube la probabilidad de recesión, el consumo básico (XLP) supera a SPY."),
+    ("F6-PS8_recesion_XLU", "recesion", r"recession", r"\bno recession\b", "XLU", +1,
+     "Si sube la probabilidad de recesión, los servicios públicos (XLU) superan a SPY."),
+]
+START_PS = "2026-11-12"      # primera fecha de salto admitida (día siguiente al registro)
+DEADLINE_PS = "2028-11-12"   # sin muestra en esta fecha → no concluyente
+MIN_SIGNALS_PS = 30
+MIN_WEEKS_PS = 20
+MIN_DAYS_PS = 365
+ALPHA_PS = 0.10 / 8          # Bonferroni: 8 hipótesis en la familia
+
+
+def evaluate(rows: list[dict], today: str) -> dict:
+    """Evaluación de UNA hipótesis. rows: señales resueltas {"entry": "AAAA-MM-DD", "excess_net": x, "cost": c}.
+    Agrupa por semana ISO de entrada; t de Student unilateral sobre las medias semanales."""
+    from datetime import date
+    wk: dict[tuple, list] = {}
+    for r in rows:
+        d = date.fromisoformat(r["entry"])
+        wk.setdefault(tuple(d.isocalendar())[:2], []).append((r["excess_net"], r["excess_net"] - r["cost"]))
+    n, w = len(rows), len(wk)
+    days = (date.fromisoformat(today) - date.fromisoformat(START_PS)).days
+    out = {"n": n, "weeks": w, "days": days, "ready": n >= MIN_SIGNALS_PS and w >= MIN_WEEKS_PS and days >= MIN_DAYS_PS,
+           "expired": today >= DEADLINE_PS}
+    if w >= 2:
+        m1 = [sum(x[0] for x in v) / len(v) for v in wk.values()]
+        m2 = [sum(x[1] for x in v) / len(v) for v in wk.values()]
+        mean = sum(m1) / w
+        sd = math.sqrt(sum((x - mean) ** 2 for x in m1) / (w - 1))
+        t = mean / (sd / math.sqrt(w)) if sd > 0 else 0.0
+        df = w - 1
+        # P(T > t) por integración numérica de la densidad t (sin dependencias externas)
+        lc = math.lgamma((df + 1) / 2) - math.lgamma(df / 2) - 0.5 * math.log(df * math.pi)
+        pdf = lambda x: math.exp(lc - (df + 1) / 2 * math.log1p(x * x / df))  # noqa: E731
+        steps, hi = 20000, abs(t) + 80.0
+        step = (hi - abs(t)) / steps
+        tail = sum(pdf(abs(t) + (i + 0.5) * step) for i in range(steps)) * step
+        p = tail if t > 0 else 1.0 - tail
+        out.update(mean_week=mean, mean_week_cost2=sum(m2) / w, t=t, p_one_sided=p)
+        out["passes"] = bool(mean > 0 and out["mean_week_cost2"] > 0 and p <= ALPHA_PS)
+    return out
 
 
 def get_json(url: str, params: dict | None = None, tries: int = 3):
@@ -295,13 +356,14 @@ def main(data_dir: Path) -> None:
     have = {(s["code"], s["asof"]) for s in sig["signals"]}
     recent_jumps = {}
     today = pd.Timestamp(now.astimezone(timezone.utc).date())
-    for code, cat, yes_pat, no_pat, asset, sign, text in HYPOTHESES:
+    for code, cat, yes_pat, no_pat, asset, sign, text in HYPOTHESES + HYPOTHESES_PS:
+        start = START_PS if code.startswith("F6-PS") else START
         ev = jumps(markets, hist, cat, yes_pat, no_pat)
         recent_jumps[code] = [{"date": str(r.date.date()), "jump": float(r.jump), "n_markets": int(r.n_markets),
                                "questions": r.questions} for r in ev[ev["date"] >= today - pd.Timedelta(days=30)].itertuples()]
         # solo saltos de los últimos 3 días: uno más antiguo (p. ej. de un mercado que acaba de entrar en la
         # lista) ya no es accionable y anotarlo con su fecha original sería información futura
-        for r in ev[(ev["date"] >= today - pd.Timedelta(days=3)) & (ev["date"] >= pd.Timestamp(START))].itertuples():
+        for r in ev[(ev["date"] >= today - pd.Timedelta(days=3)) & (ev["date"] >= pd.Timestamp(start))].itertuples():
             asof = str(r.date.date())
             if (r.jump > 0) == (sign > 0) and (code, asof) not in have:
                 sig["signals"].append({"code": code, "asset": asset, "asof": asof, "known": str(today.date()),
@@ -319,20 +381,37 @@ def main(data_dir: Path) -> None:
                 continue
             e = k + HORIZON - 1
             a = s["asset"]
+            px = [c[a].iat[e], o[a].iat[k], c["SPY"].iat[e], o["SPY"].iat[k]]
+            if not all(np.isfinite(x) and x > 0 for x in px):  # falta un precio: no se resuelve (nunca se inventa)
+                errors.append(f"sin precio para resolver {s['code']} {s['known']}")
+                continue
             r = float(c[a].iat[e] / o[a].iat[k] - 1)
             rs = float(c["SPY"].iat[e] / o["SPY"].iat[k] - 1)
             cost = roundtrip_cost(c, v, a, k)
             s["outcome"] = {"entry": str(sess[k].date()), "exit": str(sess[e].date()), "ret": r, "spy": rs,
                             "cost": cost, "excess_net": r - cost - rs, "price_source": src}
     res = {}
-    for code, *_ in HYPOTHESES:
+    for code, *_ in HYPOTHESES + HYPOTHESES_PS:
         x = [s["outcome"]["excess_net"] for s in sig["signals"] if s["code"] == code and s["outcome"]]
         res[code] = {"signals": sum(1 for s in sig["signals"] if s["code"] == code), "resolved": len(x),
                      "mean_excess": float(np.mean(x)) if x else None,
                      "hit_rate": float(np.mean([e > 0 for e in x])) if x else None}
+    # F6-PS: una sola evaluación por hipótesis (criterio registrado); el veredicto queda congelado
+    fam = sig.setdefault("family_ps", {"start": START_PS, "deadline": DEADLINE_PS, "alpha": ALPHA_PS,
+                                       "min_signals": MIN_SIGNALS_PS, "min_weeks": MIN_WEEKS_PS, "verdicts": {}})
+    fam["progress"] = {}
+    for code, *_ in HYPOTHESES_PS:
+        rows = [{"entry": s["outcome"]["entry"], "excess_net": s["outcome"]["excess_net"], "cost": s["outcome"]["cost"]}
+                for s in sig["signals"] if s["code"] == code and s["outcome"]]
+        ev_ = evaluate(rows, str(today.date()))
+        fam["progress"][code] = {k: ev_[k] for k in ("n", "weeks", "days", "ready")}
+        if code not in fam["verdicts"] and (ev_["ready"] or ev_["expired"]):
+            fam["verdicts"][code] = {**ev_, "evaluated_at": now.isoformat(),
+                                     "status": ("aprobada" if ev_.get("passes") else "prueba_fallida") if ev_["ready"]
+                                     else "no_concluyente"}
     sig["summary"] = res
     sig["recent_jumps"] = recent_jumps
-    sig["hypotheses"] = [{"code": h[0], "category": h[1], "asset": h[4], "text": h[6]} for h in HYPOTHESES]
+    sig["hypotheses"] = [{"code": h[0], "category": h[1], "asset": h[4], "text": h[6]} for h in HYPOTHESES + HYPOTHESES_PS]
     save(data_dir / "senales.json", sig)
 
     # 4) referencia de mercado: retorno de los ETF desde el inicio

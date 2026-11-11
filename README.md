@@ -4,7 +4,7 @@ Parte ligera del laboratorio de inversión simulada. **Solo dinero virtual y dat
 
 - `collector/run.py`: se ejecuta cada día hábil en GitHub Actions (gratis en repositorios públicos).
   Descarga mercados de Polymarket, detecta saltos de probabilidad, anota señales de las hipótesis
-  F3-PM1..PM5 (reglas congeladas el 2026-11-04) y las resuelve con precios de Yahoo o Stooq.
+  F3-PM1..PM5 (reglas congeladas el 2026-11-04) y F6-PS1..PS8 «Polymarket → sectores» (2026-11-11) y las resuelve con precios de Yahoo o Stooq.
 - `site/`: web estática en GitHub Pages con tres pestañas: Polymarket hoy, Prueba en vivo y Conocimiento.
 - `site/data/*.json`: datos acumulados (los escribe el recolector; no editarlos a mano).
 

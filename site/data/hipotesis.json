@@ -384,6 +384,94 @@
    "registered_at": "2026-11-10",
    "rules_hash": "5b60d01840ff0317",
    "test_evaluated": false
+  },
+  {
+   "code": "F6-PS1_aranceles_XLI",
+   "engine": "polymarket_sectores",
+   "title": "Si baja la probabilidad de nuevos aranceles, las industriales (XLI) superan a SPY en las 5 sesiones siguientes.",
+   "hypothesis": "Si baja la probabilidad de nuevos aranceles, las industriales (XLI) superan a SPY en las 5 sesiones siguientes.",
+   "status": "prospectiva",
+   "verdict": "EN PROSPECTIVA: sin evaluación histórica. Se decide una sola vez con ≥ 30 señales resueltas en ≥ 20 semanas y ≥ 12 meses (p unilateral ≤ 0,0125, Bonferroni/8, y positiva con costos ×2). Hasta entonces no se usa.",
+   "registered_at": "2026-11-11",
+   "rules_hash": "67ec854e33e63077",
+   "test_evaluated": false
+  },
+  {
+   "code": "F6-PS2_aranceles_FXI",
+   "engine": "polymarket_sectores",
+   "title": "Si baja la probabilidad de nuevos aranceles, las grandes empresas chinas (FXI) superan a SPY.",
+   "hypothesis": "Si baja la probabilidad de nuevos aranceles, las grandes empresas chinas (FXI) superan a SPY.",
+   "status": "prospectiva",
+   "verdict": "EN PROSPECTIVA: sin evaluación histórica. Se decide una sola vez con ≥ 30 señales resueltas en ≥ 20 semanas y ≥ 12 meses (p unilateral ≤ 0,0125, Bonferroni/8, y positiva con costos ×2). Hasta entonces no se usa.",
+   "registered_at": "2026-11-11",
+   "rules_hash": "c8edb6fb7a988146",
+   "test_evaluated": false
+  },
+  {
+   "code": "F6-PS3_recortes_KRE",
+   "engine": "polymarket_sectores",
+   "title": "Si sube la probabilidad de recortes de la Fed, los bancos regionales (KRE) superan a SPY.",
+   "hypothesis": "Si sube la probabilidad de recortes de la Fed, los bancos regionales (KRE) superan a SPY.",
+   "status": "prospectiva",
+   "verdict": "EN PROSPECTIVA: sin evaluación histórica. Se decide una sola vez con ≥ 30 señales resueltas en ≥ 20 semanas y ≥ 12 meses (p unilateral ≤ 0,0125, Bonferroni/8, y positiva con costos ×2). Hasta entonces no se usa.",
+   "registered_at": "2026-11-11",
+   "rules_hash": "ebfe37f76c3be61f",
+   "test_evaluated": false
+  },
+  {
+   "code": "F6-PS4_recortes_ITB",
+   "engine": "polymarket_sectores",
+   "title": "Si sube la probabilidad de recortes de la Fed, las constructoras de vivienda (ITB) superan a SPY.",
+   "hypothesis": "Si sube la probabilidad de recortes de la Fed, las constructoras de vivienda (ITB) superan a SPY.",
+   "status": "prospectiva",
+   "verdict": "EN PROSPECTIVA: sin evaluación histórica. Se decide una sola vez con ≥ 30 señales resueltas en ≥ 20 semanas y ≥ 12 meses (p unilateral ≤ 0,0125, Bonferroni/8, y positiva con costos ×2). Hasta entonces no se usa.",
+   "registered_at": "2026-11-11",
+   "rules_hash": "d372708405d9d2f4",
+   "test_evaluated": false
+  },
+  {
+   "code": "F6-PS5_escalada_XLE",
+   "engine": "polymarket_sectores",
+   "title": "Si sube la probabilidad de escalada militar, las energéticas (XLE) superan a SPY.",
+   "hypothesis": "Si sube la probabilidad de escalada militar, las energéticas (XLE) superan a SPY.",
+   "status": "prospectiva",
+   "verdict": "EN PROSPECTIVA: sin evaluación histórica. Se decide una sola vez con ≥ 30 señales resueltas en ≥ 20 semanas y ≥ 12 meses (p unilateral ≤ 0,0125, Bonferroni/8, y positiva con costos ×2). Hasta entonces no se usa.",
+   "registered_at": "2026-11-11",
+   "rules_hash": "f0c476277b4f8909",
+   "test_evaluated": false
+  },
+  {
+   "code": "F6-PS6_escalada_ITA",
+   "engine": "polymarket_sectores",
+   "title": "Si sube la probabilidad de escalada militar, las empresas de defensa (ITA) superan a SPY.",
+   "hypothesis": "Si sube la probabilidad de escalada militar, las empresas de defensa (ITA) superan a SPY.",
+   "status": "prospectiva",
+   "verdict": "EN PROSPECTIVA: sin evaluación histórica. Se decide una sola vez con ≥ 30 señales resueltas en ≥ 20 semanas y ≥ 12 meses (p unilateral ≤ 0,0125, Bonferroni/8, y positiva con costos ×2). Hasta entonces no se usa.",
+   "registered_at": "2026-11-11",
+   "rules_hash": "f5ac29f706c7efda",
+   "test_evaluated": false
+  },
+  {
+   "code": "F6-PS7_recesion_XLP",
+   "engine": "polymarket_sectores",
+   "title": "Si sube la probabilidad de recesión, el consumo básico (XLP) supera a SPY.",
+   "hypothesis": "Si sube la probabilidad de recesión, el consumo básico (XLP) supera a SPY.",
+   "status": "prospectiva",
+   "verdict": "EN PROSPECTIVA: sin evaluación histórica. Se decide una sola vez con ≥ 30 señales resueltas en ≥ 20 semanas y ≥ 12 meses (p unilateral ≤ 0,0125, Bonferroni/8, y positiva con costos ×2). Hasta entonces no se usa.",
+   "registered_at": "2026-11-11",
+   "rules_hash": "045b0f4b52f72268",
+   "test_evaluated": false
+  },
+  {
+   "code": "F6-PS8_recesion_XLU",
+   "engine": "polymarket_sectores",
+   "title": "Si sube la probabilidad de recesión, los servicios públicos (XLU) superan a SPY.",
+   "hypothesis": "Si sube la probabilidad de recesión, los servicios públicos (XLU) superan a SPY.",
+   "status": "prospectiva",
+   "verdict": "EN PROSPECTIVA: sin evaluación histórica. Se decide una sola vez con ≥ 30 señales resueltas en ≥ 20 semanas y ≥ 12 meses (p unilateral ≤ 0,0125, Bonferroni/8, y positiva con costos ×2). Hasta entonces no se usa.",
+   "registered_at": "2026-11-11",
+   "rules_hash": "7cb6b7d55c06d8f6",
+   "test_evaluated": false
   }
  ],
  "polymarket_quality_historica": {
