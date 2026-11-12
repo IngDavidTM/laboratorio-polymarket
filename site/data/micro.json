@@ -1,6 +1,45 @@
 {
  "start": "2026-11-10",
- "trades": [],
+ "trades": [
+  {
+   "key": "F4-A1:803096:0",
+   "code": "F4-A1",
+   "day": "2026-11-12",
+   "question": "World Cup 2030: Location of Final",
+   "slug": "world-cup-2030-location-of-final-20260805200159829",
+   "bought": "todos los SÍ",
+   "price": 0.18567319,
+   "cost": 0.92836595,
+   "target": 1.0,
+   "edge": 0.07716143617718862,
+   "n_legs": 5,
+   "depth_usd": 37.25,
+   "augmented": true,
+   "legs": [
+    {
+     "id": "3369413",
+     "side": 0
+    },
+    {
+     "id": "3369414",
+     "side": 0
+    },
+    {
+     "id": "3369415",
+     "side": 0
+    },
+    {
+     "id": "3369416",
+     "side": 0
+    },
+    {
+     "id": "3369417",
+     "side": 0
+    }
+   ],
+   "outcome": null
+  }
+ ],
  "daily": [
   {
    "day": "2026-11-10",
@@ -49,27 +88,58 @@
      "median_half_spread": 0.010000000000000002
     }
    }
+  },
+  {
+   "day": "2026-11-12",
+   "universe": 4918,
+   "events_scanned": 262,
+   "arb_found": 1,
+   "median_cost_all_yes": 1.0546262,
+   "min_cost_all_yes": 0.9273355000000001,
+   "median_cost_all_no_ratio": 1.01938265,
+   "min_cost_all_no_ratio": 1.00044695,
+   "spreads": {
+    ">=1M": {
+     "n": 400,
+     "median_half_spread": 0.0005000000000000004
+    },
+    "100k-1M": {
+     "n": 955,
+     "median_half_spread": 0.0050000000000000044
+    },
+    "10k-100k": {
+     "n": 3563,
+     "median_half_spread": 0.009999999999999998
+    }
+   }
   }
  ],
- "updated": "2026-11-11T02:05:19.402264+00:00",
- "universe": 4855,
+ "updated": "2026-11-12T03:14:53.697865+00:00",
+ "universe": 4918,
  "spreads": {
   ">=1M": {
-   "n": 402,
+   "n": 400,
    "median_half_spread": 0.0005000000000000004
   },
   "100k-1M": {
-   "n": 941,
+   "n": 955,
    "median_half_spread": 0.0050000000000000044
   },
   "10k-100k": {
-   "n": 3512,
-   "median_half_spread": 0.010000000000000002
+   "n": 3563,
+   "median_half_spread": 0.009999999999999998
   }
  },
  "events_scanned": 262,
- "arb_found_today": 0,
- "summary": {},
+ "arb_found_today": 1,
+ "summary": {
+  "F4-A1": {
+   "trades": 1,
+   "resolved": 0,
+   "mean_ret": null,
+   "win_rate": null
+  }
+ },
  "rules": {
   "F4-C1": null,
   "F4-N1": null
