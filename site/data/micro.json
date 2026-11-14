@@ -38,6 +38,60 @@
     }
    ],
    "outcome": null
+  },
+  {
+   "key": "F4-A1:1202280:0",
+   "code": "F4-A1",
+   "day": "2026-11-14",
+   "question": "Which of these people will be impeached first by the end of 2027?",
+   "slug": "which-of-these-people-will-be-impeached-first-by-the-end-of-2027",
+   "bought": "todos los SÍ",
+   "price": 0.10532175111111113,
+   "cost": 0.9478957600000001,
+   "target": 1.0,
+   "edge": 0.054968322677168446,
+   "n_legs": 9,
+   "depth_usd": 38.52,
+   "augmented": false,
+   "legs": [
+    {
+     "id": "5790757",
+     "side": 0
+    },
+    {
+     "id": "5790759",
+     "side": 0
+    },
+    {
+     "id": "5790763",
+     "side": 0
+    },
+    {
+     "id": "5790764",
+     "side": 0
+    },
+    {
+     "id": "5790767",
+     "side": 0
+    },
+    {
+     "id": "5790768",
+     "side": 0
+    },
+    {
+     "id": "5790769",
+     "side": 0
+    },
+    {
+     "id": "5790772",
+     "side": 0
+    },
+    {
+     "id": "5790773",
+     "side": 0
+    }
+   ],
+   "outcome": null
   }
  ],
  "daily": [
@@ -136,29 +190,53 @@
      "median_half_spread": 0.009999999999999995
     }
    }
+  },
+  {
+   "day": "2026-11-14",
+   "universe": 4936,
+   "events_scanned": 258,
+   "arb_found": 1,
+   "median_cost_all_yes": 1.05421415,
+   "min_cost_all_yes": 0.9293963000000001,
+   "median_cost_all_no_ratio": 1.0145714457142856,
+   "min_cost_all_no_ratio": 1.000952380952381,
+   "spreads": {
+    ">=1M": {
+     "n": 399,
+     "median_half_spread": 0.0005000000000000004
+    },
+    "100k-1M": {
+     "n": 959,
+     "median_half_spread": 0.0050000000000000044
+    },
+    "10k-100k": {
+     "n": 3578,
+     "median_half_spread": 0.009999999999999981
+    }
+   }
   }
  ],
- "updated": "2026-11-13T02:48:58.391304+00:00",
- "universe": 4896,
+ "updated": "2026-11-14T02:37:15.492373+00:00",
+ "universe": 4936,
  "spreads": {
   ">=1M": {
-   "n": 403,
+   "n": 399,
    "median_half_spread": 0.0005000000000000004
   },
   "100k-1M": {
-   "n": 937,
-   "median_half_spread": 0.005000000000000001
+   "n": 959,
+   "median_half_spread": 0.0050000000000000044
   },
   "10k-100k": {
-   "n": 3556,
-   "median_half_spread": 0.009999999999999995
+   "n": 3578,
+   "median_half_spread": 0.009999999999999981
   }
  },
- "events_scanned": 259,
- "arb_found_today": 0,
+ "events_scanned": 258,
+ "arb_found_today": 1,
  "summary": {
   "F4-A1": {
-   "trades": 1,
+   "trades": 2,
    "resolved": 0,
    "mean_ret": null,
    "win_rate": null
