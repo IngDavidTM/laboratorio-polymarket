@@ -92,6 +92,44 @@
     }
    ],
    "outcome": null
+  },
+  {
+   "key": "F4-A1:1040179:0",
+   "code": "F4-A1",
+   "day": "2026-11-17",
+   "question": "First to list tokenized stocks in the US?",
+   "slug": "first-to-list-tokenized-stocks-in-the-us",
+   "bought": "todos los SÍ",
+   "price": 0.193334544,
+   "cost": 0.96667272,
+   "target": 1.0,
+   "edge": 0.03447628065887698,
+   "n_legs": 5,
+   "depth_usd": 25.87,
+   "augmented": false,
+   "legs": [
+    {
+     "id": "4662012",
+     "side": 0
+    },
+    {
+     "id": "4662013",
+     "side": 0
+    },
+    {
+     "id": "4662014",
+     "side": 0
+    },
+    {
+     "id": "4662015",
+     "side": 0
+    },
+    {
+     "id": "4662016",
+     "side": 0
+    }
+   ],
+   "outcome": null
   }
  ],
  "daily": [
@@ -214,29 +252,53 @@
      "median_half_spread": 0.009999999999999981
     }
    }
+  },
+  {
+   "day": "2026-11-17",
+   "universe": 4845,
+   "events_scanned": 256,
+   "arb_found": 1,
+   "median_cost_all_yes": 1.0499943999999999,
+   "min_cost_all_yes": 0.96667272,
+   "median_cost_all_no_ratio": 1.019,
+   "min_cost_all_no_ratio": 1.000264925,
+   "spreads": {
+    ">=1M": {
+     "n": 406,
+     "median_half_spread": 0.0005000000000000004
+    },
+    "100k-1M": {
+     "n": 936,
+     "median_half_spread": 0.005
+    },
+    "10k-100k": {
+     "n": 3503,
+     "median_half_spread": 0.009999999999999998
+    }
+   }
   }
  ],
- "updated": "2026-11-14T02:37:15.492373+00:00",
- "universe": 4936,
+ "updated": "2026-11-17T04:41:59.833472+00:00",
+ "universe": 4845,
  "spreads": {
   ">=1M": {
-   "n": 399,
+   "n": 406,
    "median_half_spread": 0.0005000000000000004
   },
   "100k-1M": {
-   "n": 959,
-   "median_half_spread": 0.0050000000000000044
+   "n": 936,
+   "median_half_spread": 0.005
   },
   "10k-100k": {
-   "n": 3578,
-   "median_half_spread": 0.009999999999999981
+   "n": 3503,
+   "median_half_spread": 0.009999999999999998
   }
  },
- "events_scanned": 258,
+ "events_scanned": 256,
  "arb_found_today": 1,
  "summary": {
   "F4-A1": {
-   "trades": 2,
+   "trades": 3,
    "resolved": 0,
    "mean_ret": null,
    "win_rate": null
