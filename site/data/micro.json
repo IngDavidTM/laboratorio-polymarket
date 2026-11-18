@@ -276,26 +276,50 @@
      "median_half_spread": 0.009999999999999998
     }
    }
+  },
+  {
+   "day": "2026-11-18",
+   "universe": 4852,
+   "events_scanned": 258,
+   "arb_found": 0,
+   "median_cost_all_yes": 1.0512309499999999,
+   "min_cost_all_yes": 0.9907924,
+   "median_cost_all_no_ratio": 1.0187804375,
+   "min_cost_all_no_ratio": 1.001185225,
+   "spreads": {
+    ">=1M": {
+     "n": 401,
+     "median_half_spread": 0.0005000000000000004
+    },
+    "100k-1M": {
+     "n": 941,
+     "median_half_spread": 0.0049999999999999975
+    },
+    "10k-100k": {
+     "n": 3510,
+     "median_half_spread": 0.009999999999999953
+    }
+   }
   }
  ],
- "updated": "2026-11-17T04:41:59.833472+00:00",
- "universe": 4845,
+ "updated": "2026-11-18T03:47:43.150683+00:00",
+ "universe": 4852,
  "spreads": {
   ">=1M": {
-   "n": 406,
+   "n": 401,
    "median_half_spread": 0.0005000000000000004
   },
   "100k-1M": {
-   "n": 936,
-   "median_half_spread": 0.005
+   "n": 941,
+   "median_half_spread": 0.0049999999999999975
   },
   "10k-100k": {
-   "n": 3503,
-   "median_half_spread": 0.009999999999999998
+   "n": 3510,
+   "median_half_spread": 0.009999999999999953
   }
  },
- "events_scanned": 256,
- "arb_found_today": 1,
+ "events_scanned": 258,
+ "arb_found_today": 0,
  "summary": {
   "F4-A1": {
    "trades": 3,
