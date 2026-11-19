@@ -28,6 +28,13 @@
    "end": "2026-11-16",
    "p7": 0.0035,
    "yes": false
+  },
+  "5339986": {
+   "category": "geopolitica",
+   "question": "Israel x Iran ceasefire continues through November 15?",
+   "end": "2026-11-16",
+   "p7": 0.905,
+   "yes": true
   }
  },
  "seen_open": [
@@ -130,8 +137,11 @@
   "3388092",
   "3388093",
   "3399468",
+  "3501951",
   "3580932",
   "3580933",
+  "3721702",
+  "3721704",
   "3900266",
   "4170752",
   "4170753",
@@ -297,9 +307,9 @@
  ],
  "summary": {
   "geopolitica": {
-   "n": 1,
-   "brier": 0.00099225,
-   "brier_base": 0.0
+   "n": 2,
+   "brier": 0.0050086249999999975,
+   "brier_base": 0.25
   },
   "empresas": {
    "n": 3,
