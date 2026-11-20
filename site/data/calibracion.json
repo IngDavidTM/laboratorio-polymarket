@@ -35,6 +35,160 @@
    "end": "2026-11-16",
    "p7": 0.905,
    "yes": true
+  },
+  "2412744": {
+   "category": "empresas",
+   "question": "Will Anthropic's market cap be less than $1.25T at market close on IPO day?",
+   "end": "2026-11-19",
+   "p7": 0.202,
+   "yes": false
+  },
+  "2412746": {
+   "category": "empresas",
+   "question": "Will Anthropic's market cap be between $1.5T and $1.75T at market close on IPO day?",
+   "end": "2026-11-19",
+   "p7": 0.2715,
+   "yes": false
+  },
+  "2412747": {
+   "category": "empresas",
+   "question": "Will Anthropic's market cap be between $1.75T and $2.0T at market close on IPO day?",
+   "end": "2026-11-19",
+   "p7": 0.126,
+   "yes": false
+  },
+  "2413330": {
+   "category": "empresas",
+   "question": "Will Anthropic IPO by December 31, 2026?",
+   "end": "2026-11-19",
+   "p7": 0.9775,
+   "yes": true
+  },
+  "2412745": {
+   "category": "empresas",
+   "question": "Will Anthropic's market cap be between $1.25T and $1.5T at market close on IPO day?",
+   "end": "2026-11-20",
+   "p7": 0.3745,
+   "yes": true
+  },
+  "2412748": {
+   "category": "empresas",
+   "question": "Will Anthropic's market cap be between $2.0T and $2.25T at market close on IPO day?",
+   "end": "2026-11-19",
+   "p7": 0.035,
+   "yes": false
+  },
+  "1321564": {
+   "category": "empresas",
+   "question": "Will Anthropic have the highest IPO Market Cap 2026?",
+   "end": "2026-11-20",
+   "p7": 0.078,
+   "yes": false
+  },
+  "2412749": {
+   "category": "empresas",
+   "question": "Will Anthropic's market cap be between $2.25T and $2.5T at market close on IPO day?",
+   "end": "2026-11-19",
+   "p7": 0.007,
+   "yes": false
+  },
+  "2299956": {
+   "category": "empresas",
+   "question": "Will Anthropic's valuation hit (HIGH) $1.5T by December 31?",
+   "end": "2026-11-20",
+   "p7": 0.817,
+   "yes": true
+  },
+  "4319439": {
+   "category": "empresas",
+   "question": "Will Anthropic IPO by November 30, 2026?",
+   "end": "2026-11-19",
+   "p7": 0.9645,
+   "yes": true
+  },
+  "2412752": {
+   "category": "empresas",
+   "question": "Will Anthropic's market cap be $3.0T or greater at market close on IPO day?",
+   "end": "2026-11-19",
+   "p7": 0.0045,
+   "yes": false
+  },
+  "2412750": {
+   "category": "empresas",
+   "question": "Will Anthropic's market cap be between $2.5T and $2.75T at market close on IPO day?",
+   "end": "2026-11-19",
+   "p7": 0.0045,
+   "yes": false
+  },
+  "676792": {
+   "category": "empresas",
+   "question": "Anthropic IPO before 2027?",
+   "end": "2026-11-19",
+   "p7": 0.974,
+   "yes": true
+  },
+  "2412751": {
+   "category": "empresas",
+   "question": "Will Anthropic's market cap be between $2.75T and $3.0T at market close on IPO day?",
+   "end": "2026-11-19",
+   "p7": 0.004,
+   "yes": false
+  },
+  "2110753": {
+   "category": "empresas",
+   "question": "Will Anthropic’s market cap be 1.8T or greater at market close on IPO day by December 31 2027?",
+   "end": "2026-11-19",
+   "p7": 0.155,
+   "yes": false
+  },
+  "2412753": {
+   "category": "empresas",
+   "question": "Will Anthropic not IPO by December 31, 2027?",
+   "end": "2026-11-19",
+   "p7": 0.0045,
+   "yes": false
+  },
+  "4319441": {
+   "category": "empresas",
+   "question": "Will Anthropic IPO by December 15, 2026?",
+   "end": "2026-11-19",
+   "p7": 0.978,
+   "yes": true
+  },
+  "1301184": {
+   "category": "empresas",
+   "question": "Will Anthropic or OpenAI IPO first?",
+   "end": "2026-11-19",
+   "p7": 0.9825,
+   "yes": false
+  },
+  "6268047": {
+   "category": "empresas",
+   "question": "Will Anthropic IPO by November 19, 2026?",
+   "end": "2026-11-19",
+   "p7": 0.875,
+   "yes": true
+  },
+  "3721702": {
+   "category": "empresas",
+   "question": "Will Anthropic's IPO valuation be between $1.25T and $1.50T?",
+   "end": "2026-11-19",
+   "p7": 0.454,
+   "yes": false
+  },
+  "3721704": {
+   "category": "empresas",
+   "question": "Will Anthropic's IPO valuation be between $1.50T and $1.75T?",
+   "end": "2026-11-19",
+   "p7": 0.468,
+   "yes": true
+  },
+  "6066698": {
+   "category": "empresas",
+   "question": "Will Anthropic IPO by November 20, 2026?",
+   "end": "2026-11-19",
+   "p7": 0.933,
+   "yes": true
   }
  },
  "seen_open": [
@@ -312,9 +466,9 @@
    "brier_base": 0.25
   },
   "empresas": {
-   "n": 3,
-   "brier": 1.3166666666666628e-05,
-   "brier_base": 0.22222222222222224
+   "n": 25,
+   "brier": 0.0825647,
+   "brier_base": 0.24640000000000004
   }
  }
 }
