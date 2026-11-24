@@ -189,6 +189,62 @@
    "end": "2026-11-19",
    "p7": 0.933,
    "yes": true
+  },
+  "6919847": {
+   "category": "empresas",
+   "question": "Will there be no new be CEO of NVIDIA by December 31, 2028?",
+   "end": "2026-11-23",
+   "p7": 0.1885,
+   "yes": true
+  },
+  "6998284": {
+   "category": "empresas",
+   "question": "Will Jensen Huang rejoin NVIDIA by November 30, 2026?",
+   "end": "2026-11-23",
+   "p7": 0.09,
+   "yes": true
+  },
+  "6998285": {
+   "category": "empresas",
+   "question": "Will Jensen Huang rejoin NVIDIA by December 31, 2026?",
+   "end": "2026-11-23",
+   "p7": 0.1815,
+   "yes": true
+  },
+  "6998286": {
+   "category": "empresas",
+   "question": "Will Jensen Huang rejoin NVIDIA by December 31, 2027?",
+   "end": "2026-11-23",
+   "p7": 0.405,
+   "yes": true
+  },
+  "6919836": {
+   "category": "empresas",
+   "question": "Will Colette Kress be the next CEO of NVIDIA?",
+   "end": "2026-11-23",
+   "p7": 0.0945,
+   "yes": false
+  },
+  "6919862": {
+   "category": "empresas",
+   "question": "Will Tim Cook be the next CEO of NVIDIA?",
+   "end": "2026-11-23",
+   "p7": 0.0205,
+   "yes": false
+  },
+  "6919851": {
+   "category": "empresas",
+   "question": "Will Rene Haas be the next CEO of NVIDIA?",
+   "end": "2026-11-23",
+   "p7": 0.2315,
+   "yes": false
+  },
+  "6919849": {
+   "category": "empresas",
+   "question": "Will Ian Buck be the next CEO of NVIDIA?",
+   "end": "2026-11-23",
+   "p7": 0.185,
+   "yes": false
   }
  },
  "seen_open": [
@@ -300,11 +356,13 @@
   "3721702",
   "3721704",
   "3900266",
+  "3902370",
   "4170752",
   "4170753",
   "4319439",
   "4319440",
   "4319441",
+  "4393418",
   "4393420",
   "4620900",
   "4641065",
@@ -382,6 +440,7 @@
   "6172748",
   "6268047",
   "6282802",
+  "6364436",
   "6367372",
   "6369333",
   "656312",
@@ -457,6 +516,7 @@
   "6975353",
   "6975664",
   "6976273",
+  "6977205",
   "6989178",
   "6997774",
   "6998284",
@@ -471,9 +531,9 @@
    "brier_base": 0.25
   },
   "empresas": {
-   "n": 25,
-   "brier": 0.0825647,
-   "brier_base": 0.24640000000000004
+   "n": 33,
+   "brier": 0.1415722651515152,
+   "brier_base": 0.2479338842975206
   }
  }
 }
