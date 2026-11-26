@@ -420,22 +420,46 @@
      "median_half_spread": 0.009
     }
    }
+  },
+  {
+   "day": "2026-11-26",
+   "universe": 5039,
+   "events_scanned": 249,
+   "arb_found": 0,
+   "median_cost_all_yes": 1.0532361,
+   "min_cost_all_yes": 0.99627919,
+   "median_cost_all_no_ratio": 1.0130908083333334,
+   "min_cost_all_no_ratio": 1.0003940725,
+   "spreads": {
+    ">=1M": {
+     "n": 404,
+     "median_half_spread": 0.0005000000000000004
+    },
+    "100k-1M": {
+     "n": 976,
+     "median_half_spread": 0.0049999999999999975
+    },
+    "10k-100k": {
+     "n": 3659,
+     "median_half_spread": 0.0095
+    }
+   }
   }
  ],
- "updated": "2026-11-25T04:58:47.862393+00:00",
- "universe": 4965,
+ "updated": "2026-11-26T04:16:11.141972+00:00",
+ "universe": 5039,
  "spreads": {
   ">=1M": {
-   "n": 407,
+   "n": 404,
    "median_half_spread": 0.0005000000000000004
   },
   "100k-1M": {
-   "n": 958,
-   "median_half_spread": 0.0049999999999999906
+   "n": 976,
+   "median_half_spread": 0.0049999999999999975
   },
   "10k-100k": {
-   "n": 3600,
-   "median_half_spread": 0.009
+   "n": 3659,
+   "median_half_spread": 0.0095
   }
  },
  "events_scanned": 249,
