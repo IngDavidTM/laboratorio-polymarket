@@ -40,6 +40,19 @@
    ],
    "logged_at": "2026-11-27T04:26:01.514786+00:00",
    "outcome": null
+  },
+  {
+   "code": "F3-PM3_aranceles_GLD",
+   "asset": "GLD",
+   "asof": "2026-11-28",
+   "known": "2026-11-28",
+   "jump": 0.14500000000000002,
+   "n_markets": 1,
+   "questions": [
+    "Will the US Section 232 tariff rate on Canadian primary aluminum be >40-50% on December 31, 2027?"
+   ],
+   "logged_at": "2026-11-28T04:05:58.872999+00:00",
+   "outcome": null
   }
  ],
  "summary": {
@@ -56,7 +69,7 @@
    "hit_rate": null
   },
   "F3-PM3_aranceles_GLD": {
-   "signals": 1,
+   "signals": 2,
    "resolved": 0,
    "mean_excess": null,
    "hit_rate": null
@@ -149,6 +162,14 @@
     "questions": [
      "Will the US Section 232 tariff rate on Canadian primary aluminum be >40-50% on December 31, 2027?"
     ]
+   },
+   {
+    "date": "2026-11-28",
+    "jump": 0.14500000000000002,
+    "n_markets": 1,
+    "questions": [
+     "Will the US Section 232 tariff rate on Canadian primary aluminum be >40-50% on December 31, 2027?"
+    ]
    }
   ],
   "F3-PM4_escalada_GLD": [],
@@ -177,6 +198,14 @@
     "questions": [
      "Will the US Section 232 tariff rate on Canadian primary aluminum be >40-50% on December 31, 2027?"
     ]
+   },
+   {
+    "date": "2026-11-28",
+    "jump": 0.14500000000000002,
+    "n_markets": 1,
+    "questions": [
+     "Will the US Section 232 tariff rate on Canadian primary aluminum be >40-50% on December 31, 2027?"
+    ]
    }
   ],
   "F6-PS2_aranceles_FXI": [
@@ -199,6 +228,14 @@
    {
     "date": "2026-11-26",
     "jump": 0.10500000000000004,
+    "n_markets": 1,
+    "questions": [
+     "Will the US Section 232 tariff rate on Canadian primary aluminum be >40-50% on December 31, 2027?"
+    ]
+   },
+   {
+    "date": "2026-11-28",
+    "jump": 0.14500000000000002,
     "n_markets": 1,
     "questions": [
      "Will the US Section 232 tariff rate on Canadian primary aluminum be >40-50% on December 31, 2027?"
@@ -303,49 +340,49 @@
    "F6-PS1_aranceles_XLI": {
     "n": 0,
     "weeks": 0,
-    "days": 15,
+    "days": 16,
     "ready": false
    },
    "F6-PS2_aranceles_FXI": {
     "n": 0,
     "weeks": 0,
-    "days": 15,
+    "days": 16,
     "ready": false
    },
    "F6-PS3_recortes_KRE": {
     "n": 0,
     "weeks": 0,
-    "days": 15,
+    "days": 16,
     "ready": false
    },
    "F6-PS4_recortes_ITB": {
     "n": 0,
     "weeks": 0,
-    "days": 15,
+    "days": 16,
     "ready": false
    },
    "F6-PS5_escalada_XLE": {
     "n": 0,
     "weeks": 0,
-    "days": 15,
+    "days": 16,
     "ready": false
    },
    "F6-PS6_escalada_ITA": {
     "n": 0,
     "weeks": 0,
-    "days": 15,
+    "days": 16,
     "ready": false
    },
    "F6-PS7_recesion_XLP": {
     "n": 0,
     "weeks": 0,
-    "days": 15,
+    "days": 16,
     "ready": false
    },
    "F6-PS8_recesion_XLU": {
     "n": 0,
     "weeks": 0,
-    "days": 15,
+    "days": 16,
     "ready": false
    }
   }
